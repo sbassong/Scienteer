@@ -18,7 +18,7 @@ class User(db.Model):
 
     #associations
     projects = db.relationship("Project", cascade='all', backref=db.backref('research_projects', lazy=True))
-    reports = db.relationship("Report", cascade='all', backref=db.backref('project_reports', lazy=True))
+    reports = db.relationship("Report", cascade='all', backref=db.backref('scienteer_reports', lazy=True))
 
     def __init__(self, name, email, password_digest, bio, researcher):
         self.name = name
@@ -28,7 +28,7 @@ class User(db.Model):
         self.researcher = researcher
 
     def json(self):
-        return {"id": self.id, "name": self.name, "email": self.email, "password_digest": self.password_digest, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+        return {"id": str(self.id), "name": self.name, "email": self.email, "password_digest": self.password_digest, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
 
     def create(self):
         db.session.add(self)
