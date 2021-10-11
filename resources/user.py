@@ -1,7 +1,9 @@
-from models.db import db
 from flask_restful import Resource
 from flask import request
+
+from models.db import db
 from models.user import User
+
 from middleware import create_token, strip_token, read_token, compare_password, gen_password
 
 
@@ -26,7 +28,7 @@ class Login(Resource):
     if payload:
       print('this is payload', payload)
       return payload, 200
-    return {"msg": "unauthorized access"}, 404
+    return {"msg": "Unauthorized access"}, 404
 
 
 #handle register
@@ -42,6 +44,7 @@ class Register(Resource):
     user.create()
     return user.json(), 201
 
+
 #handles updates to password
 class User_password(Resource):
   def put(self, id):
@@ -52,7 +55,8 @@ class User_password(Resource):
       user["password_digest"] = password_digest
       db.session.commit()
       return user.json(), 200
-    return {"msg": "Unauthorized credentials"}
+    return {"msg": "Unauthorized credentials"}, 404
+
 
 #handles updates to other profile attr
 class User_profile(Resource):
@@ -63,8 +67,8 @@ class User_profile(Resource):
       for key in data:
         setattr(user, key, data[key])
       db.session.commit()
-      return user.json()
-    return {"msg": "Unmatched user"}
+      return user.json(), 200
+    return {"msg": "Unmatched user"}, 404
 
 
 

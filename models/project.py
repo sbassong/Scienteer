@@ -45,11 +45,6 @@ class Project(db.Model):
         return Project.query.all()
 
     @classmethod
-    def find_project_by_id(cls, id):
-        project = Project.query.filter_by(id=id).first_or_404()
-        return project
-
-    @classmethod
     def find_projects_by_user_id(cls, user_id):
         projects = Project.query.filter_by(user_id=user_id).all()
         return projects
@@ -58,3 +53,8 @@ class Project(db.Model):
     def find_projects_by_category(cls, category):
         projects = Project.query.filter_by(category=category).all()
         return projects
+
+    @classmethod
+    def find_project_by_id(cls, id):
+        project = Project.query.filter_by(id=id).first_or_404()
+        return project
