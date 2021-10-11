@@ -11,11 +11,12 @@ from middleware import create_token, strip_token, read_token, compare_password, 
 class Login(Resource):
   def post(self):
     data = request.get_json()
-    user = User.find_by_email(data["email"]) 
+    user = User.find_user_by_email(data["email"]) 
     if user and compare_password(data["password"], user.password_digest):
+      user = user.json()
       payload = {
-        "id": user.id,
-        "email": user.email
+        "id": user["id"],
+        "email": user["email"]
       }
       token = create_token(payload)
       return {"user" : payload, "token": token}, 200
@@ -26,7 +27,6 @@ class Login(Resource):
     token = strip_token(request)
     payload = read_token(token)
     if payload:
-      print('this is payload', payload)
       return payload, 200
     return {"msg": "Unauthorized access"}, 404
 
@@ -38,6 +38,8 @@ class Register(Resource):
     params = {
         "name": data['name'],
         "email": data['email'],
+        "bio": data['bio'],
+        "researcher": data['researcher'],
         "password_digest": gen_password(data['password'])
     }
     user = User(**params)
@@ -51,9 +53,9 @@ class Update_user_password(Resource):
     user = User.find_user_by_id(id)
     if user and compare_password(data["old_password"], user.password_digest):
       password_digest = gen_password(data["new_password"])
-      user["password_digest"] = password_digest
+      user.password_digest = password_digest
       db.session.commit()
-      return user.json(), 200
+      return {"msg": "User password updated!"}, 200
     return {"msg": "Unauthorized credentials"}, 404
 
 

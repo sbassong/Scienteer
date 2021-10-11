@@ -1,27 +1,27 @@
-# scienteer_id=
-# researcher_id=
+# scienteer_id= 279084ba-8802-4f29-bb00-18d1a92d4d01
+# researcher_id= c3cae0e1-5d3d-49c4-8875-942563a7f511
 # s_token=
-# r_token=
-# #register - http://localhost:5000/auth/register
+# r_token= eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImMzY2FlMGUxLTVkM2QtNDljNC04ODc1LTk0MjU2M2E3ZjUxMSIsImVtYWlsIjoickBlbWFpbC5jb20ifQ.XtQ9R5zgattngpGu5Ee-x3d07jtFPSMr0jiM2o6YTo8
+# #register - http://localhost:5000/auth/register  OK
   #researcher user
   {
     "name":"researcher",
     "email": "r@email.com",
     "password": "test",
     "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
-    "researcher": True
+    "researcher": true
   }
 
-  #scienteer user
+  #scienteer user 
   {
     "name":"scienteer",
     "email": "s@email.com",
     "password": "test",
     "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
-    "researcher": False
+    "researcher": false
   }
 
-#login - http://localhost:5000/auth/login
+#login - http://localhost:5000/auth/login OK
 {
   "email": "r@email.com",
   "password": "test"
@@ -31,16 +31,19 @@
   "password": "test"
 }
 
-#update userpass - http://localhost:5000/users/profile_pw/<string:id>
+#update userpass - http://localhost:5000/users/profile_pw/<string:id> OK
 {
   "old_password": "test",
-  "new_password": "testy",
+  "new_password": "testy"
 }
 
-#update userProfile - http://localhost:5000/users/profile/<string:id>
+#update userProfile - http://localhost:5000/users/profile/<string:id> OK
 {
-  "old_password": "test",
-  "new_password": "testy",
+    "name":"researcher2",
+    "email": "r@email.com",
+    "password": "test",
+    "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
+    "researcher": true
 }
 
 

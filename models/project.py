@@ -55,6 +55,6 @@ class Project(db.Model):
         return projects
 
     @classmethod
-    def find_project_by_id(cls, id):
+    def find_project_by_id(cls,id):
         project = Project.query.filter_by(id=id).first_or_404()
         return project
