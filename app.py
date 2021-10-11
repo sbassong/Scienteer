@@ -3,8 +3,8 @@ from flask_restful import Api
 from flask_cors import CORS
 from flask_migrate import Migrate
 from models.db import db
-# from models import user, report, project
-# from resources.user import 
+from models import user, report, project
+# from resources.user import Login, Register
 # from resources.project import 
 # from resources.report import 
 
@@ -13,7 +13,7 @@ CORS(app)
 api = Api(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/flask_artsy"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/scienteer_db"
 app.config['SQLALCHEMY_ECHO'] = True
 
 db.init_app(app)
