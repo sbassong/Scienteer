@@ -46,7 +46,7 @@ class Register(Resource):
 
 
 #handles updates to password
-class User_password(Resource):
+class Update_user_password(Resource):
   def put(self, id):
     data = request.get_json()
     user = User.find_user_by_id(id)
@@ -59,7 +59,7 @@ class User_password(Resource):
 
 
 #handles updates to other profile attr
-class User_profile(Resource):
+class Update_user_profile(Resource):
   def put(self, id):
     data = request.get_json()
     user = User.find_user_by_id(id)

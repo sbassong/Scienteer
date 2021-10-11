@@ -2,11 +2,13 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 from flask_migrate import Migrate
+
 from models.db import db
 from models import user, report, project
-# from resources.user import Login, Register
-# from resources.project import 
-# from resources.report import 
+
+from resources.user import Login, Register, Update_user_password, Update_user_profile
+from resources.project import Projects, Project_by_id, Project_by_user_id, Projects_by_category
+from resources.report import Reports, Report_by_id, Report_by_project_id
 
 app = Flask(__name__)
 CORS(app)
@@ -20,14 +22,20 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 
-# api.add_resource(Login, '/users/login')
-# api.add_resource(Register, '/users/register')
+api.add_resource(Login, '/auth/login')
+api.add_resource(Register, '/auth/register')
+api.add_resource(Update_user_profile, '/users/profile/<string:id>')
+api.add_resource(Update_user_password, '/users/profile_pw/<string:id>')
 
-# api.add_resource()
-# api.add_resource()
+api.add_resource(Projects, '/projects')
+api.add_resource(Project_by_id, 'project/<int:id>')
+api.add_resource(Project_by_user_id, 'projects/researcher/<string:user_id>')
+api.add_resource(Projects_by_category, 'projects/category/<string:category>')
 
-# api.add_resource()
-# api.add_resource()
+api.add_resource(Reports, '/reports')
+api.add_resource(Report_by_id, 'reports/<string:id>')
+api.add_resource(Report_by_project_id, 'reports/project/<string:project_id>')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

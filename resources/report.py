@@ -24,7 +24,7 @@ class Reports(Resource):
 
 
 #updates and deletes report
-class report_by_id(Resource):
+class Report_by_id(Resource):
     def put(self, id):
         data = request.get_json()
         token = strip_token(request)
@@ -53,7 +53,7 @@ class report_by_id(Resource):
 
 
 #handles reports of ProjectDetail page
-class report_by_project_id(Resource):
+class Report_by_project_id(Resource):
     def get(self, project_id):
         raw_reports = Report.find_reports_by_project_id(project_id)
         reports = [report.json() for report in raw_reports]

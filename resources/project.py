@@ -6,6 +6,7 @@ from models.project import Project
 
 from middleware import create_token, strip_token, read_token, compare_password, gen_password
 
+
 #grabs all projects and creates project
 class Projects(Resource):
     def get(self):
@@ -21,6 +22,7 @@ class Projects(Resource):
         project = Project(**params)
         project.create()
         return project.json(), 201
+
 
 #update and delete project
 class Project_by_id(Resource):
@@ -50,12 +52,14 @@ class Project_by_id(Resource):
             return {"msg": "Unauthorized credentials"}, 404
         return {"msg": "Unauthorized access"}, 404
 
+
 #handles get projects for category display
 class Projects_by_category(Resource):
     def get(self, category):
         raw_projects = Project.find_projects_by_category(category)
         projects = [project.json() for project in raw_projects]
         return projects, 200
+
 
 #handles projects of researcherDetail page
 class Project_by_user_id(Resource):
