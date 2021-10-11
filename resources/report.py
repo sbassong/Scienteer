@@ -31,12 +31,12 @@ class Report_by_id(Resource):
         payload = read_token(token)
         if payload:
             report = Report.find_report_by_id(id)
-            if payload["id"] == str(report["user_id"]):
+            if payload["id"] == str(report.user_id):
                 for key in data:
                     setattr(report, key, data[key])
                 db.session.commit()
                 return report.json(), 200
-            return {"msg": "Unauthorized credentials"}, 404
+            return {"msg": "Unauthorized credentials"}, 401
         return {"msg": "Unauthorized access"}, 404
 
     def delete(self, id):
@@ -44,11 +44,11 @@ class Report_by_id(Resource):
         payload = read_token(token)
         if payload:
             report = Report.find_report_by_id(id)
-            if payload["id"] == report["user_id"]:
+            if payload["id"] == str(report.user_id):
                 db.session.delete(report)
                 db.session.commit()
-                return {"msg": "report deleted!", "payload": report.id}, 200
-            return {"msg": "Unauthorized credentials"}, 404
+                return {"msg": "report deleted!", "payload": str(report.id)}, 200
+            return {"msg": "Unauthorized credentials"}, 401
         return {"msg": "Unauthorized access"}, 404
 
 

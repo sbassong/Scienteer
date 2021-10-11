@@ -1,7 +1,6 @@
 # scienteer_id= 279084ba-8802-4f29-bb00-18d1a92d4d01
 # researcher_id= c3cae0e1-5d3d-49c4-8875-942563a7f511
-# s_token=
-# r_token= eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImMzY2FlMGUxLTVkM2QtNDljNC04ODc1LTk0MjU2M2E3ZjUxMSIsImVtYWlsIjoickBlbWFpbC5jb20ifQ.XtQ9R5zgattngpGu5Ee-x3d07jtFPSMr0jiM2o6YTo8
+
 # #register - http://localhost:5000/auth/register  OK
   #researcher user
   {
@@ -48,7 +47,7 @@
 
 
 
-#project_id= 1a8fabf5-d520-4156-bc3d-9ea7887c8eec
+#project_id= e8845b0f-f4f9-401e-96a6-449e3d848d4b
 #create project - http://localhost:5000/projects OK
 {
   "title": "Orcas pod tracking",
@@ -74,21 +73,23 @@
 
 
 
-#report_id=
-#create report - http://localhost:5000/reports
+# report_id=7ac4a80f-9870-4725-92a6-5a8a48680658
+# create report - http://localhost:5000/reports OK
 {
   "content": "Orcas are doing well, much cute!",
-  "user_id": ,
-  "project_id": 
+  "location": "point bob",
+  "user_id": "279084ba-8802-4f29-bb00-18d1a92d4d01",
+  "project_id": "e8845b0f-f4f9-401e-96a6-449e3d848d4b" 
 }
 
-# reportbyid - http://localhost:5000/report/<string:id>
+# reportbyid - http://localhost:5000/report/7ac4a80f-9870-4725-92a6-5a8a48680658
   #update body
   {
   "content": "Seals are doing well, great dogos!",
-  "user_id": ,
-  "project_id": 
+  "location": "point bob",
+  "user_id": "279084ba-8802-4f29-bb00-18d1a92d4d01",
+  "project_id": "e8845b0f-f4f9-401e-96a6-449e3d848d4b" 
   }
 
 
-# report by project_id - http://localhost:5000/reports/project/<string:project_id>
+# report by project_id - http://localhost:5000/reports/project/e8845b0f-f4f9-401e-96a6-449e3d848d4b   OK   <string:project_id>

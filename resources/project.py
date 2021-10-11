@@ -41,7 +41,7 @@ class Project_by_id(Resource):
                     setattr(project, key, data[key])
                 db.session.commit()
                 return project.json(), 200
-            return {"msg": "Unauthorized credentials"}, 404
+            return {"msg": "Unauthorized credentials"}, 401
         return {"msg": "Unauthorized access"}, 404
 
     def delete(self, id):
@@ -49,11 +49,11 @@ class Project_by_id(Resource):
         payload = read_token(token)
         if payload:
             project = Project.find_project_by_id(id)
-            if payload["id"] == project["user_id"]:
+            if payload["id"] == str(project.user_id):
                 db.session.delete(project)
                 db.session.commit()
-                return {"msg": "Project deleted!", "payload": project.id}, 200
-            return {"msg": "Unauthorized credentials"}, 404
+                return {"msg": "Project deleted!", "payload": str(project.id)}, 200
+            return {"msg": "Unauthorized credentials"}, 401
         return {"msg": "Unauthorized access"}, 404
 
 
