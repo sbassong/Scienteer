@@ -35,6 +35,10 @@ class Project(db.Model):
         db.session.add(self)
         db.session.commit()
         return self.json()
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
     @classmethod
     def find_all_projects(cls):
