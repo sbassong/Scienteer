@@ -31,9 +31,9 @@ class Report_by_id(Resource):
         payload = read_token(token)
         if payload:
             report = Report.find_report_by_id(id)
-            if payload["id"] == report["user_id"]:
-                for key in data.keys():
-                    report[key] = data[key]
+            if payload["id"] == str(report["user_id"]):
+                for key in data:
+                    setattr(report, key, data[key])
                 db.session.commit()
                 return report.json(), 200
             return {"msg": "Unauthorized credentials"}, 404

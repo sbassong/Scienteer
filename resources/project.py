@@ -32,9 +32,13 @@ class Project_by_id(Resource):
         payload = read_token(token)
         if payload:
             project = Project.find_project_by_id(id)
-            if payload["id"] == project["user_id"]:
-                for key in data.keys():
-                    project[key] = data[key]
+            print("this is payload.id ->", payload["id"])
+            print("this is project.user_id ->", project.user_id)
+            print(payload["id"] == str(project.user_id))
+
+            if payload["id"] == str(project.user_id):
+                for key in data:
+                    setattr(project, key, data[key])
                 db.session.commit()
                 return project.json(), 200
             return {"msg": "Unauthorized credentials"}, 404
