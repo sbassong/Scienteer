@@ -1,8 +1,8 @@
 # ![Scienteer](https://i.imgur.com/fOsxALq.png)
 
-## Date: 10/10/2021
+### Date: 10/10/2021
 
-### By: Sam Bassong
+## By: Sam Bassong
 
 ###  [Porfolio]() | [GitHub](https://github.com/sbassong) | [LinkedIn](https://www.linkedin.com/in/sambassong/)
 ***
