@@ -28,13 +28,13 @@ api.add_resource(Update_user_profile, '/users/profile/<string:id>')
 api.add_resource(Update_user_password, '/users/profile_pw/<string:id>')
 
 api.add_resource(Projects, '/projects')
-api.add_resource(Project_by_id, 'project/<int:id>')
-api.add_resource(Project_by_user_id, 'projects/researcher/<string:user_id>')
-api.add_resource(Projects_by_category, 'projects/category/<string:category>')
+api.add_resource(Project_by_id, '/project/<string:id>')
+api.add_resource(Project_by_user_id, '/projects/researcher/<string:user_id>')
+api.add_resource(Projects_by_category, '/projects/category/<string:category>')
 
 api.add_resource(Reports, '/reports')
-api.add_resource(Report_by_id, 'reports/<string:id>')
-api.add_resource(Report_by_project_id, 'reports/project/<string:project_id>')
+api.add_resource(Report_by_id, '/report/<string:id>')
+api.add_resource(Report_by_project_id, '/reports/project/<string:project_id>')
 
 
 if __name__ == '__main__':

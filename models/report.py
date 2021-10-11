@@ -16,7 +16,7 @@ class Report(db.Model):
 
     #associations
     project = db.relationship('Project', backref=db.backref('report_project', lazy=True))
-    user = db.relationship('User', backref=db.backref('report_user', lazy=True))
+    user = db.relationship('User', backref=db.backref('report_creator', lazy=True))
 
 
     def __init__(self, content, location, project_id, user_id):

@@ -44,7 +44,6 @@ class Register(Resource):
     user.create()
     return user.json(), 201
 
-
 #handles updates to password
 class Update_user_password(Resource):
   def put(self, id):
