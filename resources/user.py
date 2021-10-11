@@ -42,8 +42,8 @@ class Register(Resource):
     user.create()
     return user.json(), 201
 
-#handles updates to profile
-class Profile(Resource):
+#handles updates to password
+class User_password(Resource):
   def put(self, id):
     data = request.get_json()
     user = User.find_user_by_id(id)
@@ -53,6 +53,18 @@ class Profile(Resource):
       db.session.commit()
       return user.json(), 200
     return {"msg": "Unauthorized credentials"}
+
+#handles updates to other profile attr
+class User_profile(Resource):
+  def put(self, id):
+    data = request.get_json()
+    user = User.find_user_by_id(id)
+    if user:
+      for key in data:
+        setattr(user, key, data[key])
+      db.session.commit()
+      return user.json()
+    return {"msg": "Unmatched user"}
 
 
 
