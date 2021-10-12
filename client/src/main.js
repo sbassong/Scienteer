@@ -12,14 +12,28 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    user: {},
+    users: [],
     projects: [],
-    reports: []
+    reports: [],
+    session_user: null,
+    authenticated: false
   },
   mutations: {
-    // increment (state) {
-    //   state.count++
-    // }
+    set_users(state, data) {
+      state.users = data
+    },
+    set_projects(state, data) {
+      state.projects = data
+    },
+    set_report(state, data) {
+      state.reports = data
+    },
+    set_session_user(state, data) {
+      state.session_user = data
+    },
+    toggle_authenticated(state) {
+      state.authenticated = true
+    }
   }
 })
 
