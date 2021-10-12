@@ -1,16 +1,27 @@
 import Client from './api'
 
-export const UpdateUserPW = async (user_id, data) => {
-    const res = await Client.post(`users/profile_pw/${user_id}`, data)
+
+export const GetAllReports = async () => {
+    const res = await Client.get(`reports`)
     return res.data
 }
 
-export const UpdateProfile = async (user_id, data) => {
-    const res = await Client.put(`users/profile/${user_id}`, data)
+export const GetReportByProjectId = async (project_id) => {
+    const res = await Client.get(`reports/project/${project_id}`)
     return res.data
 }
 
-export const GetAllUsers = async () => {
-    const res = await Client.get(`users`)
+export const CreateReport = async (data) => {
+    const res = await Client.post(`reports`, data)
+    return res.data
+}
+
+export const UpdateReport = async (report_id, data) => {
+    const res = await Client.put(`report/${report_id}`, data)
+    return res.data
+}
+
+export const DeleteReport = async (report_id) => {
+    const res = await Client.delete(`report/${report_id}`)
     return res.data
 }
