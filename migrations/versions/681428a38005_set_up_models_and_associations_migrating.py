@@ -1,8 +1,8 @@
-"""models User, Project, Report, and association set up. migrating
+"""set up models and associations, migrating
 
-Revision ID: 99959905eedb
+Revision ID: 681428a38005
 Revises: 
-Create Date: 2021-10-11 12:38:40.020942
+Create Date: 2021-10-12 13:31:27.871601
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '99959905eedb'
+revision = '681428a38005'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,6 +45,7 @@ def upgrade():
     op.create_table('reports',
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('content', sa.Text(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('location', sa.Text(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),

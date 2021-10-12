@@ -1,0 +1,1 @@
+export const S3_BASE_URL="https:scienteer-images-bucket.s3.us-west-2.amazonaws.com/"

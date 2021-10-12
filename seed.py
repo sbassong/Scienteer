@@ -82,7 +82,7 @@
   "project_id": "e8845b0f-f4f9-401e-96a6-449e3d848d4b" 
 }
 
-# reportbyid - http://localhost:5000/report/7ac4a80f-9870-4725-92a6-5a8a48680658
+# reportbyid - http://localhost:5000/report/7ac4a80f-9870-4725-92a6-5a8a48680658 OK
   #update body
   {
   "content": "Seals are doing well, great dogos!",

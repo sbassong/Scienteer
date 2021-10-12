@@ -8,6 +8,7 @@ class Report(db.Model):
 
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     content = db.Column(db.Text, nullable=False)
+    image = db.Column(db.Text, nullable=True)
     location = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.utcnow)
@@ -16,18 +17,19 @@ class Report(db.Model):
 
     #associations
     project = db.relationship('Project', backref=db.backref('report_project', lazy=True))
-    user = db.relationship('User', backref=db.backref('report_', lazy=True))
+    user = db.relationship('User', backref=db.backref('report_creator', lazy=True))
 
 
-    def __init__(self, content, location, project_id, user_id):
+    def __init__(self, content, location, image, project_id, user_id):
         self.content = content
         self.location = location
+        self.image = image
         self.project_id = project_id
         self.user_id = user_id
         
 
     def json(self):
-        return {"id": str(self.id), "content": self.content, "location": self.location, "user_id": str(self.user_id), "project_id": str(self.project_id),  "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+        return {"id": str(self.id), "content": self.content, "location": self.location, "image": self.image, "user_id": str(self.user_id), "project_id": str(self.project_id),  "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
 
     def create(self):
         db.session.add(self)

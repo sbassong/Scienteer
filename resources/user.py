@@ -71,6 +71,13 @@ class Update_user_profile(Resource):
       return user.json(), 200
     return {"msg": "Unmatched user"}, 404
 
+#handles getting all users
+class Get_all_users(Resource):
+  def get(self):
+    raw_users = User.find_all_users()
+    users = [user.json() for user in raw_users]
+    return users
+
 
 
 
