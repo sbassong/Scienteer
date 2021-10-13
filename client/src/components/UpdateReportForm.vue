@@ -35,7 +35,7 @@ export default {
         // user_id: this.current_user.id,
         // project_id: this.parent_project.id
       }
-      await UpdateReport(reportBody)
+      await UpdateReport(referenced_report.id, reportBody)
       this.content = referenced_report.content || null
       this.location = referenced_report.location || null
       this.image = referenced_report.image || null

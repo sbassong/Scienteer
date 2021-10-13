@@ -37,7 +37,7 @@ export default {
         instructions: this.instructions,
         // user_id: this.current_user.id,
       }
-      await UpdateProject(projectBody)
+      await UpdateProject(referenced_project.id, projectBody)
       this.title = referenced_project.title || null
       this.category = referenced_project.category || null
       this.requirements = referenced_project.requirements || null
@@ -46,7 +46,7 @@ export default {
       // this.$router.push(`/project/${res.data.id}`)
     }
   },
-  
+
   computed: {
     selectErrors () {
       const errors = []
