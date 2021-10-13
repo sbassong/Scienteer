@@ -4,7 +4,7 @@
     <v-divider></v-divider>
     <v-text-field v-model="location" label="Location" @change="$v.location.$touch()" @blur="$v.location.$touch()" filled shaped ></v-text-field>
     <v-divider></v-divider>
-    <v-file-input v-model='image' accept="image/*" label="File input" @change="$v.image.$touch()" @blur="$v.image.$touch()"></v-file-input>
+    <v-file-input v-model='image' label="Images" @change="$v.image.$touch()" @blur="$v.image.$touch()" accept="image/*" prepend-icon="mdi-camera" multiple></v-file-input>
     <v-divider></v-divider>
     <v-btn class="mr-4" @click='handleSubmit'>Submit Report</v-btn>
   </form>
@@ -31,15 +31,16 @@ export default {
         content: this.content,
         location: this.location,
         image: this.image,
-        user_id: this.current_user.id,
-        project_id: this.parent_project.id
+        // user_id: this.current_user.id,
+        // project_id: this.parent_project.id
       }
       await CreateReport(reportBody)
-      this.name = ''
-      this.email = ''
-      this.password = '' 
-      this.researcher = null
-      this.$router.push(`/project/${parent_project.id}`)
+      this.content = ''
+      this.location = ''
+      this.image = '' 
+      // this.current_user = null
+      // this.parent_project = null
+      // this.$router.push(`/project/${parent_project.id}`)
     },
   
   }

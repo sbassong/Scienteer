@@ -1,83 +1,59 @@
 <template>
   <form >
-    <v-text-field v-model="name" placeholder="Enter name here" name='name' :error-messages="nameErrors" :counter="30" label="Name" required @change="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-    <v-text-field v-model="email" label="Email" :error-messages="emailErrors" placeholder="Enter email here" name='enail' required @change="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
-    <v-text-field v-model="password" label="Password" required placeholder="Enter password here" name='password' @change="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
-    <v-select v-model="select" :items="roles" :error-messages="selectErrors" label="Role" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-    <v-btn class="mr-4" @click='handleSubmit'>Register</v-btn>
+    <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" required filled shaped ></v-text-field>
+    <v-divider></v-divider>
+    <v-select v-model="category" :categories="categories" :error-messages="selectErrors" label="Project Category" required @change="$v.category.$touch()" @blur="$v.category.$touch()"></v-select>
+    <v-divider></v-divider>
+    <v-textarea v-model="requirements" label="Scienteer Requirements" required @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
+    <v-divider></v-divider>
+    <v-textarea v-model="instructions" label="Project Instructions" required @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
+    <v-btn class="mr-4" @click='handleSubmit'>Submit Project</v-btn>
   </form>
 </template>
 
 <script>
-import {RegisterUser} from '../services/auth'
-import {validationMixin} from 'vuelidate'
-import {required, maxLength, email} from 'vuelidate/lib/validators'
+import {CreateProject} from '../services/project'
+
 
 export default {
-  name: 'RegisterForm',
-  mixins: [validationMixin],
-
-  validations: {
-    name: { required, maxLength: maxLength(30) },
-    email: { required, email },
-    password: { required },
-    select: { required },
-  },
+  name: 'ProjectForm',
 
   data: () => ({
-    name: '',
-    email: '',
-    password: '',
-    select: null,
-    researcher: null,
-    roles: ["Scienteer", "Researcher"]
+    title: '',
+    category: null,
+    requirements: '',
+    instructions: '',
+    current_user: null, //store current user here, then key into attr you need
+    categories: ['Ecology', 'Microbiology', 'Marine Biology', 'Ornithology']
   }),
 
   methods: {
     async handleSubmit(event) {
       event.preventDefault()
-      const userBody = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        researcher: this.scienteerOrNo()
+      const projectBody = {
+        title: this.title,
+        category: this.category,
+        requirements: this.requirements,
+        instructions: this.instructions,
+        // user_id: this.current_user.id,
       }
-      await RegisterUser(userBody)
-      this.name = ''
-      this.email = ''
-      this.password = '' 
-      this.researcher = null
-      this.$router.push('/users/login')
-    },
-
-    scienteerOrNo() {
-      if (this.selected === 'Scienteer') return false
-      return true
-      
+      await CreateProject(projectBody)
+      this.title = ''
+      this.category = null
+      this.requirements = '' 
+      this.instructions = '' 
+      // this.current_user = null
+      // this.$router.push(`/project/${res.data.id}`)
+    }
   },
-
   computed: {
     selectErrors () {
       const errors = []
-      if (!this.$v.select.$dirty) return errors
-      !this.$v.select.required && errors.push('Item is required')
+      if (!this.$v.category.$dirty) return errors
+      !this.$v.category.required && errors.push('Item is required')
       return errors
-    },
-    nameErrors () {
-      const errors = []
-      if (!this.$v.name.$dirty) return errors
-      !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-      !this.$v.name.required && errors.push('Name is required.')
-      return errors
-    },
-    emailErrors () {
-      const errors = []
-      if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('Must be valid email')
-      !this.$v.email.required && errors.push('Email is required')
-      return errors
-    },
-  },
+    }
+  }
 }
-}
+
 </script>

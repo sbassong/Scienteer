@@ -5,20 +5,19 @@
     </v-app-bar> -->
 
     <v-main>
-      
+      <ProjectForm />
     </v-main>
   </v-app>
 </template>
 
 <script>
 
-// import RegisterForm from './components/RegisterForm.vue'
-// import LoginForm from './components/LoginForm.vue'
+import ProjectForm from './components/ProjectForm.vue'
 
 export default {
   name: 'App',
   components: {
-    
+    ProjectForm
   },
 
   data: () => ({
