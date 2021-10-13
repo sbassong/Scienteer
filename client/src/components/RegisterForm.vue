@@ -5,7 +5,6 @@
     <v-text-field v-model="password" label="Password" required placeholder="Enter password here" name='password' @change="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
     <v-select v-model="select" :items="roles" :error-messages="selectErrors" label="Role" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
     <v-btn class="mr-4" @click='handleSubmit'>Register</v-btn>
-
   </form>
 </template>
 
@@ -41,8 +40,8 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
-        researcher: this.scienteerOrNo()}
-
+        researcher: this.scienteerOrNo()
+      }
       await RegisterUser(userBody)
       this.name = ''
       this.email = ''
@@ -74,8 +73,8 @@ export default {
     emailErrors () {
       const errors = []
       if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('Must be valid e-mail')
-      !this.$v.email.required && errors.push('E-mail is required')
+      !this.$v.email.email && errors.push('Must be valid email')
+      !this.$v.email.required && errors.push('Email is required')
       return errors
     },
   },
