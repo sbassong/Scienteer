@@ -1,23 +1,23 @@
 <template>
   <v-app>
-    <!-- <v-app-bar
-      
-    </v-app-bar> -->
+    <v-app-bar>
+      <Nav />
+    </v-app-bar>
 
     <v-main>
-      <ProjectForm />
+      <router-view> </router-view> 
     </v-main>
   </v-app>
 </template>
 
 <script>
 
-import ProjectForm from './components/ProjectForm.vue'
+import Nav from './components/Nav.vue'
 
 export default {
   name: 'App',
   components: {
-    ProjectForm
+    Nav
   },
 
   data: () => ({
@@ -25,3 +25,9 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+a {
+    text-decoration: none;
+  }
+</style>
