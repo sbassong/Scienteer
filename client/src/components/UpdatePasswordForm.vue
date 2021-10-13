@@ -28,7 +28,7 @@ export default {
         old_password: this.old_password,
         new_password: this.new_password
       }
-      await UpdateUserPW(passwordBody)
+      await UpdateUserPW(current_user.id, passwordBody)
       this.old_password = ''
       this.new_password = ''
       this.c_new_password = ''
