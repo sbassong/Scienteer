@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <h1>
-      Artsy <br/> Facts
-      </h1>
+    <h1> </h1>
   </div>
 </template>
 
@@ -14,7 +12,7 @@ export default {
 
 <style scoped>
 .home {
-  background-image: url("https://i.imgur.com/hN5mXKs.png");
+  background-image: url("");
   background-position: center center;
   background-size: cover;
   /* height: 100%; */
@@ -26,20 +24,5 @@ export default {
   overflow-x: hidden;
 }
 
-h1 {
-position: absolute;
-width: 452px;
-height: 195px;
-
-font-family: 'Black Ops One', cursive;;
-font-style: normal;
-font-weight: normal;
-font-size: 96px;
-line-height: 119px;
-text-align: center;
-text-shadow: 2rem;
-color: #6b757e;
-text-shadow-color: Black;
-}
 </style>
 

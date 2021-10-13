@@ -38,7 +38,7 @@ class Register(Resource):
     params = {
         "name": data['name'],
         "email": data['email'],
-        "bio": data['bio'],
+        "bio": '',
         "researcher": data['researcher'],
         "password_digest": gen_password(data['password'])
     }

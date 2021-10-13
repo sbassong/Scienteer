@@ -1,15 +1,13 @@
 <template>
-  <div>
-      <form @submit='handleSubmit'>
-        <label for="email">Email</label>
-        <input type="text" placeholder="john@email.com" name='email' :value='email' @input='handleChange'>
-        <label for="password">Password</label>
-        <input type="text" placeholder="Enter password here" name='password' :value='password' @input='handleChange'>
-        <button>Log In</button>
-      </form>
+  <form >
+    <v-text-field v-model="email" label="Email" :error-messages="emailErrors" placeholder="Enter email here" name='enail' required @change="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
+    <v-text-field v-model="password" label="Password" required placeholder="Enter password here" name='password' @change="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
 
-  </div>
+    <v-btn class="mr-4" @click='handleSubmit'>Login</v-btn>
+
+  </form>
 </template>
+
 
 <script>
 import {LoginUser} from '../services/auth'
@@ -17,8 +15,18 @@ import {LoginUser} from '../services/auth'
 export default {
   name: 'LoginForm',
   data: () => ({
-    email: '',
-    password: ''
+      valid: false,
+      firstname: '',
+      lastname: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
   }),
   methods: {
     handleChange(event) {
@@ -37,4 +45,23 @@ export default {
     }
   }
 }
+</script>
+
+<script>
+  export default {
+    data: () => ({
+      valid: false,
+      firstname: '',
+      lastname: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
+    }),
+  }
 </script>

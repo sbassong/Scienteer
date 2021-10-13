@@ -4,12 +4,14 @@ import VueRouter from 'vue-router'
 import router from './router'
 import Vuex from 'vuex'
 import vuetify from './plugins/vuetify'
+import Vuelidate from 'vuelidate'
 
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(Vuelidate)
 
 const store = new Vuex.Store({
   state: {

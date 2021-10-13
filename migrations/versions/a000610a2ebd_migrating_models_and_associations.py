@@ -1,8 +1,8 @@
-"""set up models and associations, migrating
+"""migrating models and associations
 
-Revision ID: 681428a38005
+Revision ID: a000610a2ebd
 Revises: 
-Create Date: 2021-10-12 13:31:27.871601
+Create Date: 2021-10-12 16:52:46.545140
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '681428a38005'
+revision = 'a000610a2ebd'
 down_revision = None
 branch_labels = None
 depends_on = None
