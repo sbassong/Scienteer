@@ -1,11 +1,18 @@
 <template>
-  <div class="card artist-card" >
+  <div class="card project-card" >
     <div class="image-cont">
-      <img :src='picture' alt="">
+      <!-- <img :src='' alt=""> -->
     </div>
     <div class="info-cont flex-col">
-      <h3>{{name}}</h3>
+      <h3>{{}}</h3>
+      <h3>{{}}</h3>
     </div>
+    
+    <!-- <div class="info-cont flex-col">
+      <p>{{}}</p>
+      <p>{{}}</p>
+    </div> -->
+
   </div>
 </template>
 
@@ -13,8 +20,7 @@
 export default {
   name: 'ArtistCard',
   props: {
-    name: String,
-    picture: String
+
   }
 }
 </script>
@@ -24,7 +30,6 @@ export default {
   max-width: 300px;
   max-height: 380px;
   border-radius: 4px;
-  background-color: #1b1b1b;
   cursor: pointer;
   transition: all 0.2s;
   margin: 0.5em

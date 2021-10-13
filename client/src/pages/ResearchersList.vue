@@ -14,28 +14,23 @@
 </template>
 
 <script>
-import {GetArtists} from '../services/artists'
-import ArtistCard from '../components/ArtistCard.vue'
 
 export default {
-  name: 'ArtistsList',
+  name: 'ResearchersList',
   components: {
-    ArtistCard
+    
   },
   data: () => ({
-    artists: []
+
   }),
   mounted() {
-    this.getArtists()
+
   },
   methods: {
-    async getArtists() {
-      const artists = await GetArtists()
-      this.artists = artists
-    },
-    selectArtist(artist_id) {
-      this.$router.push(`/artists/details/${artist_id}`)
-    }
+  
+    // selectResearcher(researcher_id) {
+    //   this.$router.push(`/researcher/${researcher_id}`)
+    // }
   }
 }
 </script>

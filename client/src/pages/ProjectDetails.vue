@@ -6,31 +6,21 @@
 </template>
 
 <script>
-  import Forum from '../components/Forum'
-  import ArtistBio from '../components/ArtistBio'
 
-  import {GetArtistById} from '../services/artists'
 
 export default {
-  name: 'ArtistDetails',
+  name: 'ProjectDetails',
   data: () => ({
     artistDetails: null,
   }),
   components: {
-    Forum,
-    ArtistBio
+  
   },
   mounted() {
-    this.getArtistDetails()
+
   },
   methods: {
-    async getArtistDetails() {
-      const artist_id = parseInt(this.$route.params.artist_id)
 
-      const details = await GetArtistById(artist_id)
-      console.log(details)
-      this.artistDetails = details
-    }
   }
 }
 </script>

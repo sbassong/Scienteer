@@ -23,7 +23,6 @@
       <router-link to='/'><h3>Join Us!</h3></router-link>
       
   </v-app-bar>
-
 </template>
 
 
