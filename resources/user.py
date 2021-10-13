@@ -23,6 +23,7 @@ class Login(Resource):
     return {"msg": "Unauthorized access"}, 404
 
   #handles checking for user session
+class CheckSession(Resource):
   def get(self):
     token = strip_token(request)
     payload = read_token(token)
