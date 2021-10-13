@@ -5,8 +5,7 @@
     </v-app-bar> -->
 
     <v-main>
-      <!-- <RegisterForm /> -->
-      <!-- <LoginForm /> -->
+      
     </v-main>
   </v-app>
 </template>
@@ -19,8 +18,7 @@
 export default {
   name: 'App',
   components: {
-    // RegisterForm,
-    // LoginForm
+    
   },
 
   data: () => ({
