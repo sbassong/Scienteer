@@ -1,12 +1,16 @@
 <template>
-  <form >
-    <v-text-field v-model="name" label="Name" required :error-messages="nameErrors" :counter="30"   @change="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-    <v-text-field v-model="email" label="Email" required :error-messages="emailErrors"  @change="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
-    <v-text-field v-model="password" label="Password" required  @change="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
-    <v-text-field v-model="c_password" label="Confirm Password" required  @change="$v.c_password.$touch()" @blur="$v.c_password.$touch()"></v-text-field>
-    <v-select v-model="select" :items="roles" :error-messages="selectErrors" label="Role" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-    <v-btn class="mr-4" @click='handleSubmit'  v-if='password !== c_password' disabled>Register</v-btn>
-  </form>
+  <v-card class="mx-auto px-5" width='700' height="auto">
+    <v-card-title class="justify-center">Register Form</v-card-title>
+    <form>
+      <v-text-field v-model="name" label="Name" required :error-messages="nameErrors" :counter="30"   @change="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
+      <v-text-field v-model="email" label="Email" required :error-messages="emailErrors"  @change="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
+      <v-text-field v-model="password" label="Password" required  @change="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
+      <v-text-field v-model="c_password" label="Confirm Password" required  @change="$v.c_password.$touch()" @blur="$v.c_password.$touch()"></v-text-field>
+      <v-select v-model="select" :items="roles" :error-messages="selectErrors" label="Role" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
+      <v-btn class="mr-4 mb-6" @click='handleSubmit'  v-if='password !== c_password' disabled>Register</v-btn>
+      <v-btn class="mr-4 mb-6" @click='handleSubmit'  v-else>Register</v-btn>
+    </form>
+  </v-card>
 </template>
 
 <script>

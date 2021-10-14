@@ -1,0 +1,65 @@
+<template>
+  <v-hover v-slot="{ hover }">
+    <v-card class="mx-auto" max-width="40%" max-height="300">
+
+      <v-card-text>
+        <v-card-title class="justify-center"><h2>Ready to join the network? Hover over here!</h2></v-card-title>
+      </v-card-text >
+
+      <v-expand-transition>
+        <v-card-text>
+        <v-row v-if="hover" align="center" justify="space-around" class="d-flex transition-fast-in-fast-out darken-2 v-card--reveal text-h2 " style="height: 100%;">
+          <v-btn @click="overlayRegister = !overlay" color='primary' class='mb-5' rounded>Create account!</v-btn>
+          <v-btn @click="overlayLogin = !overlay" color='purple' class='mb-5' dark rounded>Have an account?</v-btn>
+        </v-row>
+
+        <v-overlay :absolute="absoluteRegister" :value="overlayRegister">
+          <RegisterForm />
+          <v-btn color="Red" dark @click="overlayRegister = false">Cancel</v-btn>
+        </v-overlay>
+
+        <v-overlay :absolute="absoluteLogin" :value="overlayLogin">
+          <LoginForm />
+          <v-btn class="justify-center" color="Red" dark @click="overlayLogin = false">Cancel</v-btn>
+        </v-overlay>
+
+        </v-card-text>
+      </v-expand-transition>
+
+    </v-card>
+  </v-hover>
+</template>
+
+<script>
+import LoginForm from './LoginForm.vue'
+import RegisterForm from './RegisterForm.vue'
+
+export default {
+  name: 'WelcomeCard',
+  components: {
+    LoginForm,
+    RegisterForm
+  },
+  props: {
+
+  },
+  data:()=> ({
+    absoluteRegister: true,
+    absolutelogin: true,
+    overlayRegister: false,
+    overlayLogin: false
+  }),
+  methods: {
+    // renderLogin() {
+    //   this.clickedLogin ? this.clickedLogin=false : this.clickedLogin=true
+    // },
+    // renderRegister() {
+    //   this.clickedRegister ? this.clickedRegister=false : this.clickedRegister=true
+    // }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

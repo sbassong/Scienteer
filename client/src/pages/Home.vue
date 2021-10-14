@@ -1,12 +1,21 @@
 <template>
-  <div class="home">
-    <h1> </h1>
-  </div>
+  <v-parallax dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+    <v-row align="center" justify="center">
+      <v-col class="text-center" cols="12">
+        <WelcomeCard />
+      </v-col>
+    </v-row>
+  </v-parallax>
 </template>
 
 <script>
+import WelcomeCard from '../components/WelcomeCard.vue' 
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    WelcomeCard
+  }
 }
 </script>
 
