@@ -3,6 +3,7 @@
 
     <v-col cols="12" class="py-2">
       <v-btn-toggle v-model="text" tile color="deep-purple accent-3" group>
+        <v-btn @click="filterProjects" value="All">All</v-btn>
         <v-btn @click="filterProjects" value="Ecology">Ecology</v-btn>
         <v-btn @click="filterProjects" value="Microbiology">Microbiology</v-btn>
         <v-btn @click="filterProjects" value="Marine Biology">Marine Biology</v-btn>
@@ -41,8 +42,11 @@ export default {
       this.$router.push(`/project/${project_id}`)
     },
 
-    // filterProject(e){
-    //   if (e.target.value === 'Ecology'){
+    // filterProjects(e){
+    //   if (e.target.value === 'All'){
+    //     this.projects = allprojects
+    //   }
+    //   else if (e.target.value === 'Ecology'){
     //     this.projects = allprojects.filter(project => project.category = 'Ecology')
     //   }
     //   else if (e.target.value === 'Microbiology'){

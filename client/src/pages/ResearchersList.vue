@@ -1,48 +1,38 @@
 <template>
-  <div>
+  <v-container class='researchers' fluid fill-height>
 
-      <h2>Artists</h2>
-    <div class="artists">
-      <section class="container-grid" v-for='artist in artists' :key='artist.id'>
-        <div @click="selectArtist(artist.id)">
-          <ArtistCard :picture='artist.picture' :name='artist.name' />
-        </div>
-      </section>
-    </div>
+    <v-row>
+      <v-col v-for="researcher in researchers" :key="researcher.id" cols="4">
+        <ResearcherCard @click='selectresearcher(researcher)' :researcher='researcher' />
+      </v-col>
+    </v-row>
 
-  </div>
+  </v-container>
 </template>
 
+
 <script>
+import ResearcherCard from '../components/ResearcherCard.vue'
 
 export default {
   name: 'ResearchersList',
   components: {
-    
+    ResearcherCard
   },
   data: () => ({
-
+    Researchers: null
   }),
   mounted() {
 
   },
   methods: {
-  
-    // selectResearcher(researcher_id) {
-    //   this.$router.push(`/researcher/${researcher_id}`)
-    // }
+    selectResearcher(researcher_id) {
+      this.$router.push(`/researcher/${researcher_id}`)
+    },
   }
 }
 </script>
 
 <style scoped>
-  .artists {
-    display: grid;
-    grid-template: auto / repeat(4, 1fr);
-    padding: 1em
-  }
 
-  h2 {
-    text-align: center;
-  }
 </style>
