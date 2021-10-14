@@ -5,13 +5,15 @@
     <v-main >
       <router-view></router-view> 
     </v-main>
-    
+
   </v-app>
 </template>
 
 <script>
 
 import Nav from './components/Nav.vue'
+import { CheckSession } from './services/auth'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'App',
@@ -19,8 +21,24 @@ export default {
     Nav
   },
 
-  data: () => ({
-    //
+  mounted() {
+    const token = localStorage.getItem('token')
+    if (token) this.checkToken(token)
+  },
+
+  methods: {
+    ...mapActions(['setUser','toggleAuthenticated']),
+
+    async checkToken(token) {
+      const session = await CheckSession(token)
+      this.setUser(session)
+      this.toggleAuthenticated(true)
+      localStorage.setItem('authenticated', '1')
+    }
+  },
+  computed: mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated
   }),
 };
 </script>
