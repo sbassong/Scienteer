@@ -8,7 +8,7 @@
       <v-text-field v-model="c_password" label="Confirm Password" required  @change="$v.c_password.$touch()" @blur="$v.c_password.$touch()"></v-text-field>
       <v-select v-model="select" :items="roles" :error-messages="selectErrors" label="Role" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
       
-      <v-row align="center" justify="space-around">
+      <v-row align="center" justify="center">
         <v-btn class="mr-4 mb-5 mt-2" @click='handleSubmit'  v-if='password !== c_password' disabled>Register</v-btn>
         <v-btn class="mr-4 mb-5 mt-2" @click='handleSubmit'  v-else>Register</v-btn>
       </v-row>

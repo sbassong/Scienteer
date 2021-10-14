@@ -15,12 +15,12 @@
 
         <v-overlay :absolute="absoluteRegister" :value="overlayRegister">
           <RegisterForm />
-          <v-btn color="Red" dark @click="overlayRegister = false">Cancel</v-btn>
+          <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayRegister = false">Cancel</v-btn></v-row>
         </v-overlay>
 
         <v-overlay :absolute="absoluteLogin" :value="overlayLogin">
           <LoginForm />
-          <v-btn class="justify-center" color="Red" dark @click="overlayLogin = false">Cancel</v-btn>
+          <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayLogin = false">Cancel</v-btn></v-row>
         </v-overlay>
 
         </v-card-text>

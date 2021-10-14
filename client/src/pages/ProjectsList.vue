@@ -1,47 +1,64 @@
 <template>
-  <div>
+  <v-container class='projects' fluid fill-height>
 
-      <h2>Artists</h2>
-    <div class="artists">
-      <section class="container-grid" v-for='artist in artists' :key='artist.id'>
-        <div @click="selectArtist(artist.id)">
-          <ArtistCard :picture='artist.picture' :name='artist.name' />
-        </div>
-      </section>
-    </div>
+    <v-col cols="12" class="py-2">
+      <v-btn-toggle v-model="text" tile color="deep-purple accent-3" group>
+        <v-btn @click="filterProjects" value="Ecology">Ecology</v-btn>
+        <v-btn @click="filterProjects" value="Microbiology">Microbiology</v-btn>
+        <v-btn @click="filterProjects" value="Marine Biology">Marine Biology</v-btn>
+        <v-btn @click="filterProjects" value="Ornithology">Ornithology</v-btn>
+      </v-btn-toggle>
+    </v-col>
 
-  </div>
+    <v-container>
+      <v-row>
+        <v-col v-for="project in projects" :key="project.id" cols="4">
+          <ProjectCard @click='selectProject(project)' :project='project' />
+        </v-col>
+      </v-row>
+    </v-container>
+
+  </v-container>
 </template>
 
-<script>
 
+<script>
+import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
-  name: 'ArtistsList',
+  name: 'ProjectsList',
   components: {
+    ProjectCard
   },
   data: () => ({
-
+    projects: null
   }),
   mounted() {
 
   },
   methods: {
     selectProject(project_id) {
-      this.$router.push(`/artists/details/${project_id}`)
-    }
+      this.$router.push(`/project/${project_id}`)
+    },
+
+    // filterProject(e){
+    //   if (e.target.value === 'Ecology'){
+    //     this.projects = allprojects.filter(project => project.category = 'Ecology')
+    //   }
+    //   else if (e.target.value === 'Microbiology'){
+    //     this.projects = allprojects.filter(project => project.category = 'Microbiology')
+    //   }
+    //   else if (e.target.value === 'Marine Biology'){
+    //     this.projects = allprojects.filter(project => project.category = 'Marine Biology')
+    //   }
+    //   else {
+    //     this.projects = allprojects.filter(project => project.category = 'Ornithology')
+    //   }
+    // }
   }
 }
 </script>
 
 <style scoped>
-  .artists {
-    display: grid;
-    grid-template: auto / repeat(4, 1fr);
-    padding: 1em
-  }
 
-  h2 {
-    text-align: center;
-  }
 </style>

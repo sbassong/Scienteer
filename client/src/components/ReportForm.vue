@@ -6,7 +6,7 @@
     <v-divider></v-divider>
     <v-file-input v-model='image' label="Images" @change="$v.image.$touch()" @blur="$v.image.$touch()" accept="image/*" prepend-icon="mdi-camera" multiple></v-file-input>
     <v-divider></v-divider>
-    <v-btn class="mr-4" @click='handleSubmit'>Submit Report</v-btn>
+    <v-row align="center" justify="center"><v-btn class="mr-4" @click='handleSubmit'>Submit Report</v-btn></v-row>
   </form>
 </template>
 

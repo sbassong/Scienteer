@@ -1,5 +1,5 @@
 <template>
-  <v-container class='home' fluid fill-height  >
+  <v-container class='home' fluid fill-height>
     <WelcomeCard />
   </v-container>
 </template>

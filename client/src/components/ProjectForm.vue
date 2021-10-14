@@ -7,7 +7,7 @@
     <v-textarea v-model="requirements" label="Scienteer Requirements" required @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
     <v-divider></v-divider>
     <v-textarea v-model="instructions" label="Project Instructions" required @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-btn class="mr-4" @click='handleSubmit'>Submit Project</v-btn>
+    <v-row align="center" justify="center"><v-btn class="mr-4" @click='handleSubmit'>Submit Project</v-btn></v-row>
   </form>
 </template>
 
