@@ -17,7 +17,7 @@
 export default {
   name: 'ResearcherCard',
   props: {
-
+    researcher: Object
   }
 }
 </script>

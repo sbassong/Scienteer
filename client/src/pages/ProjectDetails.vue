@@ -1,12 +1,15 @@
 <template>
   <v-container class='project' fluid fill-height>
+
     <v-row align='center' justify='space-around'>
       <v-container>
         <v-img max-width="300" src="project image goes here"></v-img>
       </v-container>
+
       <v-container>
         <p>Requirements will go here</p>
       </v-container>
+
       <v-container>
         <p>Instructions go here</p>
       </v-container>

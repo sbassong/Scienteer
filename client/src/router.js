@@ -7,6 +7,7 @@ import ResearchersList from './pages/ResearchersList'
 import ResearcherDetails from './pages/ResearcherDetails'
 import ProjectsList from './pages/ProjectsList'
 import ProjectDetails from './pages/ProjectDetails'
+import ReportDetails from './pages/ReportDetails'
 
 const routes = [
   {path: '/', component: Home, name: 'Home'},
@@ -15,7 +16,8 @@ const routes = [
   {path: '/researchers', component: ResearchersList, name: 'ResearchersList'},
   {path: '/researcher/:researcher_id', component: ResearcherDetails, name: 'ResearcherDetails'},
   {path: '/projects', component: ProjectsList, name: 'ProjectsList'},
-  {path: '/project/:project_id', component: ProjectDetails, name: 'ProjectDetails'}
+  {path: '/project/:project_id', component: ProjectDetails, name: 'ProjectDetails'},
+  {path: '/report/:report_id', component: ReportDetails, name: 'ReportDetails'}
 ]
 
 export default new VueRouter({ routes, mode: 'history' })
