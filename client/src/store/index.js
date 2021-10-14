@@ -41,7 +41,9 @@ export default new Vuex.Store({
   
     getProjects: state => state.projects,
     getProjectsByCategory: (state, category) => state.projects.filter(project => project.category === category),
+    getProjectsByResearcherId: (state, researcherId) => state.projects.filter(project => project.user_id === researcherId),
     
-    getReports: state => state.reports
+    getReports: state => state.reports,
+    getReportsByScienteerId: (state, scienteerId) => state.projects.filter(report => report.user_id === scienteerId),
   }
 })
