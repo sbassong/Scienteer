@@ -13,12 +13,12 @@
           <v-btn @click="overlayLogin = !overlay" color='purple' class='mb-5' dark rounded>Have an account?</v-btn>
         </v-row>
 
-        <v-overlay :absolute="absoluteRegister" :value="overlayRegister">
+        <v-overlay :absolute="absoluteRegister" :opacity='opacity' :value="overlayRegister">
           <RegisterForm />
           <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayRegister = false">Cancel</v-btn></v-row>
         </v-overlay>
 
-        <v-overlay :absolute="absoluteLogin" :value="overlayLogin">
+        <v-overlay :absolute="absoluteLogin" :opacity='opacity' :value="overlayLogin">
           <LoginForm />
           <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayLogin = false">Cancel</v-btn></v-row>
         </v-overlay>
@@ -45,9 +45,10 @@ export default {
   },
   data:()=> ({
     absoluteRegister: true,
-    absolutelogin: true,
     overlayRegister: false,
-    overlayLogin: false
+    absolutelogin: true,
+    overlayLogin: false,
+    opacity: 0.8
   }),
   methods: {
 

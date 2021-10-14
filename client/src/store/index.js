@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    sessionUser: null,
+    user: null,
     authenticated: false,
 
     users: [],
@@ -15,7 +15,7 @@ export default new Vuex.Store({
   
   //mutations. funcs that are solely responsible for manipulation store state
   mutations: {
-    setUser: (state, sessionData) => state.sessionUser = sessionData,
+    setUser: (state, data) => state.user = data,
     toggleAuthenticated: (state, data) => state.authenticated = data,
     
     setUsers: (state, data) => state.users = data,
@@ -25,7 +25,7 @@ export default new Vuex.Store({
   
   //actions. methods used in the app to commit mutations
   actions: {
-    setUser: (context, sessionData) => context.commit('setUser', sessionData),
+    setUser: (context, data) => context.commit('setUser', data),
     toggleAuthenticated: (context, data) => context.commit('toggleAuthenticated', data),
     
     setUsers: (context, data) => context.commit('setUsers', data),
@@ -35,7 +35,7 @@ export default new Vuex.Store({
 
   //getters. methods used in the app to get store state data
   getters: {
-    getSessionUser: state => state.sessionUser,
+    getSessionUser: state => state.user,
     isAuthenticated: state => state.authenticated,
     getResearchers: state => state.users.filter(user => user.researcher === true),
   

@@ -30,8 +30,8 @@ export default {
     ...mapActions(['setUser','toggleAuthenticated']),
 
     async checkToken(token) {
-      const session = await CheckSession(token)
-      this.setUser(session)
+      const sessionUser = await CheckSession(token)
+      this.setUser(sessionUser)
       this.toggleAuthenticated(true)
       localStorage.setItem('authenticated', '1')
     }
