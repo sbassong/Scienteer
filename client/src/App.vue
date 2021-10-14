@@ -1,12 +1,11 @@
 <template>
-  <v-app>
-    <v-app-bar>
-      <Nav />
-    </v-app-bar>
+  <v-app id='app'>
+    <Nav />
 
-    <v-main>
-      <router-view> </router-view> 
+    <v-main >
+      <router-view></router-view> 
     </v-main>
+    
   </v-app>
 </template>
 
@@ -27,7 +26,6 @@ export default {
 </script>
 
 <style scoped>
-a {
-    text-decoration: none;
-  }
-</style>
+
+</style> >
+

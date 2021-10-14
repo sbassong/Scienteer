@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="white" flat v-if="current_user && authenticated">
       <router-link to='/'><v-img class="mr-3" src="https://i.imgur.com/fOsxALqm.png" height="64px" width="140px"></v-img></router-link>
-      <v-tabs centered  class="ml-n9 tabs-cont" color="grey darken-1">
+      <v-tabs centered  class="ml-n9" color="purple darken-1">
         <v-tab><router-link to='/'><h2>Home</h2></router-link></v-tab>
         <v-tab><router-link to='/projects'><h2>Projects</h2></router-link></v-tab>
         <v-tab><router-link to='/researchers'><h2>Researchers</h2></router-link></v-tab>
@@ -14,7 +14,7 @@
 
   <v-app-bar app color="white" flat v-else>
       <router-link to='/'><v-img class="mr-3" src="https://i.imgur.com/fOsxALqm.png" height="64px" width="140px"></v-img></router-link>
-      <v-tabs centered  class="ml-n9" color="grey darken-1">
+      <v-tabs centered  class="ml-n9" color="purple darken-1">
         <v-tab><router-link to='/'><h2>Home</h2></router-link></v-tab>
         <v-tab><router-link to='/projects'><h2>Projects</h2></router-link></v-tab>
         <v-tab><router-link to='/researchers'><h2>Researchers</h2></router-link></v-tab>

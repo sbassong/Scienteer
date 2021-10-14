@@ -1,12 +1,7 @@
 <template>
-  <v-parallax dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-    <v-row align="center" justify="center">
-      <v-col class="text-center" cols="12">
-        <WelcomeCard />
-      </v-col>
-    </v-row>
-  </v-parallax>
+  <v-container class='home' fluid fill-height  >
+    <WelcomeCard />
+  </v-container>
 </template>
 
 <script>
@@ -21,16 +16,13 @@ export default {
 
 <style scoped>
 .home {
-  background-image: url("");
+  background-image: url("https://i.imgur.com/H72Sdq7.jpg?1");
   background-position: center center;
-  background-size: cover;
-  /* height: 100%; */
-  height: 100vh;
+  background-size:cover;
   background-color: transparent;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  /* position: relative; */
-  overflow-x: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 </style>

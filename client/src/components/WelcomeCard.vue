@@ -1,6 +1,6 @@
 <template>
   <v-hover v-slot="{ hover }">
-    <v-card class="mx-auto" max-width="40%" max-height="300">
+    <v-card shaped class="mx-auto" max-width="40%" max-height="300">
 
       <v-card-text>
         <v-card-title class="justify-center"><h2>Ready to join the network? Hover over here!</h2></v-card-title>
@@ -50,12 +50,7 @@ export default {
     overlayLogin: false
   }),
   methods: {
-    // renderLogin() {
-    //   this.clickedLogin ? this.clickedLogin=false : this.clickedLogin=true
-    // },
-    // renderRegister() {
-    //   this.clickedRegister ? this.clickedRegister=false : this.clickedRegister=true
-    // }
+
   }
 }
 </script>
