@@ -17,10 +17,11 @@
 
 ### ***Technologies Used***
 * Vue
-* Flask/Python
-* PostgreSQL
 * Vuetify
 * Vuex
+* Flask/Python
+* SQLAlchemy/PostgreSQL
+* AWS S3 
 * Google Maps API
 * CSS
 * Heroku
@@ -57,6 +58,6 @@
 
 ### ***Credits***
 #### Support and Help: SEI-DRY @ GA
-#### Pictures: [DuckDuckGoSearch](https://duckduckgo.com)
+#### Pictures: [DuckDuckGoSearch](https://duckduckgo.com), [Pixabay](https://pixabay.com/)
 #### Fonts: [Google Fonts](https://fonts.google.com/)
 

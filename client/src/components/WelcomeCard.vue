@@ -40,19 +40,14 @@ export default {
     LoginForm,
     RegisterForm
   },
-  props: {
 
-  },
   data:()=> ({
     absoluteRegister: true,
     overlayRegister: false,
     absolutelogin: true,
     overlayLogin: false,
     opacity: 0.8
-  }),
-  methods: {
-
-  }
+  })
 }
 </script>
 
