@@ -16,7 +16,7 @@ export const GetProjectById = async (project_id) => {
     return res.data
 }
 
-export const GetProjectByUserId = async (user_id) => {
+export const GetProjectsByUserId = async (user_id) => {
     const res = await Client.get(`projects/researcher/${user_id}`)
     return res.data
 }

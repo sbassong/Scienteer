@@ -24,24 +24,31 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
 import ProjectCard from '../components/ProjectCard'
+import {GetProjectsByUserId} from '../services/project'
 
 export default {
   name: 'ResearcherDetails',
   data: () => ({
     researcher: null,
-    researcher_projects: null
+    researcher_projects: this.getResearcherById
   }),
   components: {
     ProjectCard
   },
   mounted() {
-
+    this.getProjectsByUserId()
   },
   methods: {
-    selectProject(project_id) {
-      this.$router.push(`/project/${project_id}`)
-    },
+    async getProjectsByUserId() {
+      const res = await GetProjectsByUserId(this.$route.params.researcher_id)
+      this.researcher_projects = res.data
+    }
+  },
+
+  computed: {
+    ...mapGetters([`getResearcherById${this.$route.params.researcher_id}`])
   }
 }
 </script>

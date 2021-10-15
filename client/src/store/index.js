@@ -38,6 +38,7 @@ export default new Vuex.Store({
     getSessionUser: state => state.user,
     isAuthenticated: state => state.authenticated,
     getResearchers: state => state.users.filter(user => user.researcher === true),
+    getResearcherById: (state, researcher_id) => state.users.filter(user => user.id === researcher_id),
   
     getProjects: state => state.projects,
     getProjectsByCategory: (state, category) => state.projects.filter(project => project.category === category),
