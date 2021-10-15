@@ -4,8 +4,9 @@ from flask import request
 from models.db import db
 from models.user import User
 
-from middleware import create_token, strip_token, read_token, compare_password, gen_password
-
+from werkzeug.utils import secure_filename
+from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
+from aws import upload_file
 
 #handles login
 class Login(Resource):
@@ -16,20 +17,23 @@ class Login(Resource):
       user = user.json()
       payload = {
         "id": user["id"],
-        "email": user["email"]
+        "email": user["email"],
+        "bio": user["bio"],
+        "avatar": user["avatar"],
+        "researcher": user["researcher"]
       }
       token = create_token(payload)
       return {"user" : payload, "token": token}, 200
-    return {"msg": "Unauthorized access"}, 404
+    return {"msg": "Unauthorized access"}, 401
 
   #handles checking for user session
 class CheckSession(Resource):
   def get(self):
     token = strip_token(request)
-    payload = read_token(token)
-    if payload:
+    if token:
+      payload = read_token(token)
       return payload, 200
-    return {"msg": "Unauthorized access"}, 404
+    return {"msg": "Unauthorized access"}, 401
 
 
 #handle register
@@ -39,7 +43,7 @@ class Register(Resource):
     params = {
         "name": data['name'],
         "email": data['email'],
-        "bio": '',
+        "bio": data['bio'] or '',
         "researcher": data['researcher'],
         "password_digest": gen_password(data['password'])
     }
@@ -71,6 +75,23 @@ class Update_user_profile(Resource):
       db.session.commit()
       return user.json(), 200
     return {"msg": "Unmatched user"}, 404
+
+#handles updating user avatar
+class Update_user_avatar(Resource):
+  def put(self, id):
+    if "avatar" not in request.files:
+      return {"msg": "Error"}, 400
+    file = request.files['avatar']
+    if file and allowed_file(file.filename):
+      file.filename = secure_filename(file.filename)
+      uploaded = upload_file(file)
+      user = User.find_user_by_id(id)
+      if user:
+        for key in {"avatar": uploaded}:
+          setattr(user, key, file[key])
+      db.session.commit()
+      return user.json(), 200
+    return {"msg": "Error"}, 400
 
 #handles getting all users
 class Get_all_users(Resource):

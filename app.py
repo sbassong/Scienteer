@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from models.db import db
 from models import user, report, project
 
-from resources.user import Login, Register, Update_user_password, Update_user_profile, Get_all_users, CheckSession
+from resources.user import Login, Register, Update_user_password, Update_user_profile, Get_all_users, CheckSession, Update_user_avatar
 from resources.project import Projects, Project_by_id, Project_by_user_id, Projects_by_category
 from resources.report import Reports, Report_by_id, Report_by_project_id
 
@@ -30,6 +30,7 @@ api.add_resource(Register, '/api/auth/register')
 api.add_resource(Get_all_users, '/api/users')
 api.add_resource(Update_user_profile, '/api/users/profile/<string:id>')
 api.add_resource(Update_user_password, '/api/users/profile_pw/<string:id>')
+api.add_resource(Update_user_avatar, '/api/users/profile_avatar/<string:id>')
 
 api.add_resource(Projects, '/api/projects')
 api.add_resource(Project_by_id, '/api/project/<string:id>')
