@@ -10,16 +10,16 @@
 
 <script>
 import {UpdateProfile} from '../services/user'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UpdateProfileForm',
 
   data: () => ({
-    name: current_user.name || null,
-    email: current_user.email || null,
-    bio: current_user.bio || null,
-    // image: current_user.image || null', future addition to user table
-    current_user: null //session user
+    name: this.user.name || null,
+    email: this.user.email || null,
+    bio: this.user.bio || null,
+    // image: this.user.image || null', future addition to user table
   }),
 
   methods: {
@@ -31,17 +31,20 @@ export default {
         bio: this.bio,
         // image: this.image 
       }
-      await UpdateProfile(current_user.id, profileBody)
-      this.name = current_user.name || null
-      this.email = current_user.email || null
-      this.bio = current_user.bio || null
-      // this.image = current_user.image || null
+      await UpdateProfile(this.user.id, profileBody)
+      this.name = this.user.name || null
+      this.email = this.user.email || null
+      this.bio = this.user.bio || null
+      // this.image = this.user.image || null
       this.$router.push('/users/profile')
     }
   },
 
   computed: {
-    
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
   },
 }
 </script>

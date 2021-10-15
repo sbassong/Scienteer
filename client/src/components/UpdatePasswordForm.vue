@@ -10,6 +10,7 @@
 
 <script>
 import {UpdateUserPW} from '../services/user'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UpdatePasswordForm',
@@ -18,7 +19,6 @@ export default {
     old_password: '',
     new_password: '',
     c_new_password: '',
-    current_user: null, //session user
   }),
 
   methods: {
@@ -28,7 +28,7 @@ export default {
         old_password: this.old_password,
         new_password: this.new_password
       }
-      await UpdateUserPW(current_user.id, passwordBody)
+      await UpdateUserPW(this.user.id, passwordBody)
       this.old_password = ''
       this.new_password = ''
       this.c_new_password = ''
@@ -37,7 +37,10 @@ export default {
   },
 
   computed: {
-    
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
   },
 }
 </script>

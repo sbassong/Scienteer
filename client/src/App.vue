@@ -25,10 +25,11 @@ export default {
   },
 
   mounted() {
+    this.getData()
+    
     const token = localStorage.getItem('token')
     if (token) this.checkToken(token)
 
-    this.getData()
   },
 
   methods: {

@@ -3,7 +3,7 @@
 
     <v-row align='center' justify='space-around'>
       <v-container>
-        <v-img max-width="300" src="project.image"></v-img>
+        <v-img max-width="300" :src="project.image ? project.image : 'https://i.imgur.com/H72Sdq7.jpg?1'"></v-img>
       </v-container>
 
       <v-container>
