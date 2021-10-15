@@ -17,7 +17,7 @@ def upload_file(file, acl='public-read'):
       "ACL": acl,
       "ContentType": file.content_type
     })
-    return "https://{bucket}.s3.amazonaws.com/{filename}".format(bucket=S3_BUCKET, filename=file.filename)
+    return "https://d1jgdfywsic76t.cloudfront.net/{filename}".format(filename=file.filename)
   except:
     print('Upload Failed')
 

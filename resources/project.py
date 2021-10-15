@@ -4,7 +4,9 @@ from flask import request
 from models.db import db
 from models.project import Project
 
-from middleware import create_token, strip_token, read_token, compare_password, gen_password
+from werkzeug.utils import secure_filename
+from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
+from aws import upload_file
 
 
 #grabs all projects and creates project
@@ -16,6 +18,14 @@ class Projects(Resource):
 
     def post(self):
         data = request.get_json()
+
+        file = request.files['image']
+        upload_file(file)
+        if file and allowed_file(file.filename):
+            file.filename = secure_filename(file.filename)
+            uploaded = upload_file(file)
+            data['image'] = uploaded
+
         params = {}
         for k in data.keys():
             params[k] = data[k]
@@ -38,11 +48,13 @@ class Project_by_id(Resource):
         payload = read_token(token)
         if payload:
             project = Project.find_project_by_id(id)
-            print("this is payload.id ->", payload["id"])
-            print("this is project.user_id ->", project.user_id)
-            print(payload["id"] == str(project.user_id))
-
             if payload["id"] == str(project.user_id):
+                file = request.files['image']
+                upload_file(file)
+                if file and allowed_file(file.filename):
+                    file.filename = secure_filename(file.filename)
+                    uploaded = upload_file(file)
+                    data['image'] = uploaded
                 for key in data:
                     setattr(project, key, data[key])
                 db.session.commit()

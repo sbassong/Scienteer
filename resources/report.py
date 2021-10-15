@@ -1,10 +1,12 @@
 from flask_restful import Resource
 from flask import request
-from resources.s3 import upload_file
+
 from models.db import db
 from models.report import Report
 
-from middleware import create_token, strip_token, read_token, compare_password, gen_password
+from werkzeug.utils import secure_filename
+from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
+from aws import upload_file
 
 #grabs all reports and creates report
 class Reports(Resource):
@@ -15,9 +17,13 @@ class Reports(Resource):
 
     def post(self):
         data = request.get_json()
-        if data.image:
-            file = request.files['file']
-            upload_file(file)
+        #upload to s3
+        file = request.files['image']
+        upload_file(file)
+        if file and allowed_file(file.filename):
+            file.filename = secure_filename(file.filename)
+            uploaded = upload_file(file)
+            data['image'] = uploaded
 
         params = {}
         for k in data.keys():
@@ -42,6 +48,12 @@ class Report_by_id(Resource):
         if payload:
             report = Report.find_report_by_id(id)
             if payload["id"] == str(report.user_id):
+                file = request.files['image']
+                upload_file(file)
+                if file and allowed_file(file.filename):
+                    file.filename = secure_filename(file.filename)
+                    uploaded = upload_file(file)
+                    data['image'] = uploaded
                 for key in data:
                     setattr(report, key, data[key])
                 db.session.commit()
