@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" app>
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-avatar class="mb-4" color="grey darken-1" size="64">
-          <v-img :src="user.image"></v-img>
+          <v-img :src="user.avatar"></v-img>
         </v-avatar>
         <div>{{user.name}}</div>
         <div>{{user.email}}</div>

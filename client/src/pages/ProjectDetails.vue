@@ -43,7 +43,6 @@
 </template>
 
 
-
 <script>
 import ReportCard from '../components/ReportCard'
 import ReportForm from '../components/ReportForm.vue'

@@ -39,3 +39,9 @@ def gen_password(password):
 def compare_password(password, hashed_password):
     return bcrypt.checkpw(password.encode(), hashed_password.encode())
 
+
+
+#handles files validation
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and filename.split('.', 1)[1].lower() in ALLOWED_EXTENSIONS

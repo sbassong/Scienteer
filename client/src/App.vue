@@ -1,11 +1,9 @@
 <template>
   <v-app id='app'>
     <Nav />
-
-    <v-main >
-      <router-view></router-view> 
-    </v-main>
-
+      <v-main >
+        <router-view></router-view> 
+      </v-main>
   </v-app>
 </template>
 
@@ -26,7 +24,7 @@ export default {
 
   mounted() {
     this.getData()
-    
+
     const token = localStorage.getItem('token')
     if (token) this.checkToken(token)
 
@@ -50,7 +48,7 @@ export default {
       const reports = await GetAllReports()
       this.setReports(reports.data)
     } 
-  }
+  },
 
 }
 </script>
