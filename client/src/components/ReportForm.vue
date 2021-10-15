@@ -12,16 +12,19 @@
 
 <script>
 import {CreateReport} from '../services/report'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ReportForm',
 
+  props: {
+    project: Object
+  },
+
   data: () => ({
     content: '',
-    location: '',
-    image: '',
-    current_user: null, //store current user here, then key into attr you need
-    parent_project: null //this should come as props from parent component or store. maybe it'll be whole project obj
+    location: null,
+    image: null,
   }),
 
   methods: {
@@ -31,18 +34,22 @@ export default {
         content: this.content,
         location: this.location,
         image: this.image,
-        // user_id: this.current_user.id,
-        // project_id: this.parent_project.id
+        user_id: this.user.id,
+        project_id: this.project.id
       }
       await CreateReport(reportBody)
       this.content = ''
-      this.location = ''
-      this.image = '' 
-      // this.current_user = null
-      // this.parent_project = null
-      // this.$router.push(`/project/${parent_project.id}`)
+      this.location = null
+      this.image = null 
+      this.$router.push(`/project/${this.project.id}`)
     },
-  
+
+    computed: {
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
+  }
   }
 }
 

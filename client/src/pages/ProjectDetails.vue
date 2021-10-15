@@ -16,7 +16,7 @@
     </v-row>
 
     <v-container class='project-reports'>
-      <v-row align='center' justify='space-around'>
+      <v-row v-if='user.researcher === false && authenticated' align='center' justify='space-around'>
         <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
       </v-row>
       <v-row>
@@ -27,7 +27,7 @@
     </v-container>
 
     <v-overlay :absolute="absoluteReport" :opacity='opacity' :value="overlayReport">
-          <ReportForm />
+          <ReportForm :project="project"/>
           <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayReport = false">Cancel</v-btn></v-row>
     </v-overlay>
   </v-container>
@@ -40,6 +40,7 @@ import ReportCard from '../components/ReportCard'
 import ReportForm from '../components/ReportForm.vue'
 import { GetProjectById} from '../services/project'
 import { GetReportsByProjectId} from '../services/report'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ProjectDetails',
