@@ -26,7 +26,7 @@
 
     <v-container v-else>
       <v-row>
-        <v-col v-for="report in ScienteerReports" :key="report.id" cols="4">
+        <v-col v-for="report in scienteerReports" :key="report.id" cols="4">
           <ReportCard :report='report' />
         </v-col>
       </v-row>
@@ -38,7 +38,7 @@
 <script>
 import ProjectCard from '../components/ProjectCard.vue'
 import ReportCard from '../components/ReportCard.vue'
-import { mapGetters, mapState } from 'vuex'
+import { mapState, mapGetters} from 'vuex'
 
 export default {
   name: 'Profile',
@@ -47,21 +47,15 @@ export default {
     ReportCard
   },
 
-  data:()=>({
-    current_user: null,
-    user_projects: null,
-    user_reports: null
-  }),
-
   computed: {
     ...mapState({
     user: state => state.user,
-    authenticated: state => state.authenticated
+    authenticated: state => state.authenticated,
     }),
 
     ...mapGetters({
-    ScienteerReports: 'getReportsByScienteerId', 
-    researcherProjects: 'getProjectsByResearcherId'
+      scienteerReports: 'getReportsByScienteerId', 
+      researcherProjects: 'getProjectsByResearcherId'
     })
   }
 }

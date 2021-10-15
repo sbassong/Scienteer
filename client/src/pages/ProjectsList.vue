@@ -24,6 +24,7 @@
 
 
 <script>
+import { mapState } from 'vuex'
 import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
@@ -31,9 +32,12 @@ export default {
   components: {
     ProjectCard
   },
+
   data: () => ({
-    projects: null
+    allProjects: this.projects,
+
   }),
+
   mounted() {
 
   },
@@ -42,23 +46,17 @@ export default {
       this.$router.push(`/project/${project_id}`)
     },
 
-    // filterProjects(e){
-    //   if (e.target.value === 'All'){
-    //     this.projects = allprojects
-    //   }
-    //   else if (e.target.value === 'Ecology'){
-    //     this.projects = allprojects.filter(project => project.category = 'Ecology')
-    //   }
-    //   else if (e.target.value === 'Microbiology'){
-    //     this.projects = allprojects.filter(project => project.category = 'Microbiology')
-    //   }
-    //   else if (e.target.value === 'Marine Biology'){
-    //     this.projects = allprojects.filter(project => project.category = 'Marine Biology')
-    //   }
-    //   else {
-    //     this.projects = allprojects.filter(project => project.category = 'Ornithology')
-    //   }
-    // }
+    filterProjects(e){
+      if (e.target.value === 'All') this.allProjects = this.projects
+      else if (e.target.value === 'Ecology') this.projects = this.projects.filter(project => project.category = 'Ecology')
+      else if (e.target.value === 'Microbiology') this.projects = this.projects.filter(project => project.category = 'Microbiology')
+      else if (e.target.value === 'Marine Biology') this.projects = this.projects.filter(project => project.category = 'Marine Biology')
+      else this.projects = this.projects.filter(project => project.category = 'Ornithology')
+    }
+  },
+  
+  computed: {
+    ...mapState(['projects']),
   }
 }
 </script>

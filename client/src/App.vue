@@ -13,7 +13,10 @@
 
 import Nav from './components/Nav.vue'
 import { CheckSession } from './services/auth'
-import { mapActions, mapState } from 'vuex'
+import { GetAllUsers } from './services/user'
+import { GetAllProjects } from './services/project'
+import { GetAllReports } from './services/report'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -24,22 +27,30 @@ export default {
   mounted() {
     const token = localStorage.getItem('token')
     if (token) this.checkToken(token)
+
+    this.getData()
   },
 
   methods: {
-    ...mapActions(['setUser','toggleAuthenticated']),
+    ...mapActions(['setUser','toggleAuthenticated', 'setUsers', 'setProjects', 'setReports']),
 
     async checkToken(token) {
       const sessionUser = await CheckSession(token)
       this.setUser(sessionUser)
       this.toggleAuthenticated(true)
       localStorage.setItem('authenticated', '1')
-    }
-  },
-  computed: mapState({
-    user: state => state.user,
-    authenticated: state => state.authenticated
-  }),
+    },
+
+    async getData() {
+      const users = await GetAllUsers()
+      this.setUsers(users.data)
+      const projects = await GetAllProjects()
+      this.setProjects(projects.data)
+      const reports = await GetAllReports()
+      this.setReports(reports.data)
+    } 
+  }
+
 };
 </script>
 
