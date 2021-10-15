@@ -80,17 +80,3 @@ class Report_by_project_id(Resource):
         raw_reports = Report.find_reports_by_project_id(project_id)
         reports = [report.json() for report in raw_reports]
         return reports, 200
-
-# class Report_image(Resource):
-#     def put(self, report_id):
-#         data = request.get_json()
-#         image = data.image
-#         file = request.files['file']
-#         upload_file(file, image)
-
-#         report = Report.find_report_by_id(report_id)
-#         report.image = image
-#         # setattr(report, report.image, data[report.image])
-#         db.session.merge(report)
-#         db.session.commit()
-#         return {"msg": "Uploaded"}

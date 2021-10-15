@@ -1,8 +1,8 @@
 """migrating models and associations
 
-Revision ID: a000610a2ebd
+Revision ID: 697bd0239631
 Revises: 
-Create Date: 2021-10-12 16:52:46.545140
+Create Date: 2021-10-15 14:13:00.914735
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'a000610a2ebd'
+revision = '697bd0239631'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,6 +22,7 @@ def upgrade():
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
+    sa.Column('avatar', sa.Text(), nullable=True),
     sa.Column('password_digest', sa.String(), nullable=False),
     sa.Column('bio', sa.Text(), nullable=True),
     sa.Column('researcher', sa.Boolean(), nullable=False),
@@ -34,8 +35,10 @@ def upgrade():
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('category', sa.String(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('requirements', sa.Text(), nullable=False),
     sa.Column('instructions', sa.Text(), nullable=False),
+    sa.Column('scienteers', postgresql.ARRAY(sa.String()), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.Column('user_id', postgresql.UUID(as_uuid=True), nullable=False),

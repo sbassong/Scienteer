@@ -10,6 +10,7 @@ class User(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
+    avatar = db.Column(db.Text, nullable=True)
     password_digest = db.Column(db.String, nullable=False)
     bio = db.Column(db.Text, nullable=True)
     researcher = db.Column(db.Boolean, nullable=False)
@@ -20,15 +21,16 @@ class User(db.Model):
     projects = db.relationship("Project", cascade='all', backref=db.backref('research_projects', lazy=True))
     reports = db.relationship("Report", cascade='all', backref=db.backref('scienteer_reports', lazy=True))
 
-    def __init__(self, name, email, password_digest, bio, researcher):
+    def __init__(self, name, email, avatar, password_digest, bio, researcher):
         self.name = name
         self.email = email
+        self.avatar = avatar
         self.password_digest = password_digest
         self.bio = bio
         self.researcher = researcher
 
     def json(self):
-        return {"id": str(self.id), "name": self.name, "email": self.email, "password_digest": self.password_digest, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+        return {"id": str(self.id), "name": self.name, "email": self.email, "avatar":  self.avatar, "password_digest": self.password_digest, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
 
     def create(self):
         db.session.add(self)
