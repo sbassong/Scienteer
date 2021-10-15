@@ -12,17 +12,19 @@
 
 <script>
 import {UpdateReport} from '../services/report'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UpdateReportForm',
 
+  props: {
+    report: Object
+  },
+
   data: () => ({
-    content: referenced_report.content || null,
-    location: referenced_report.location || null,
-    image: referenced_report.image || null,
-    current_user: null, //store current user here, then key into attr you need
-    parent_project: null, //this should come as props from parent component or store. maybe it'll be whole project obj
-    referenced_report: null // this should come from the store or parent container
+    content: this.report.content || null,
+    location: this.report.location || null,
+    image: this.report.image || null,
   }),
 
   methods: {
@@ -32,19 +34,25 @@ export default {
         content: this.content,
         location: this.location,
         image: this.image,
-        // user_id: this.current_user.id,
-        // project_id: this.parent_project.id
+        user_id: this.report.user_id,
+        project_id: this.report.project.id
       }
-      await UpdateReport(referenced_report.id, reportBody)
-      this.content = referenced_report.content || null
-      this.location = referenced_report.location || null
-      this.image = referenced_report.image || null
-      // this.current_user = null
-      // this.parent_project = null
-      // this.$router.push(`/project/${parent_project.id}`)
+      await UpdateReport(this.report.id, reportBody)
+      this.content = this.report.content || null
+      this.location = this.report.location || null
+      this.image = this.report.image || null
+      this.$router.push(`/report/${this.report.id}`)
     },
   
+  },
+
+  computed: {
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
   }
+
 }
 
 </script>

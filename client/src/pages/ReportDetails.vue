@@ -16,6 +16,14 @@
         <v-img max-width="300" :src="report.image"></v-img>
       </v-container>
 
+      <v-row v-if='user.researcher === false && authenticated && user.id === report.user_id' align='center' justify='space-around'>
+        <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
+      </v-row>
+
+      <v-overlay :absolute="absoluteReport" :opacity='opacity' :value="overlayReport">
+          <UpdateReportForm :report="report"/>
+          <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayReport = false">Cancel</v-btn></v-row>
+    </v-overlay>
   </v-container>
 </template>
 
@@ -23,15 +31,20 @@
 
 <script>
 import {GetReportById} from '../services/report'
+import UpdateReportForm from '../components/UpdateReportForm.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ReportDetails',
   components: {
-
+    UpdateReportForm
   },
 
   data: () => ({
-    report: null
+    report: null,
+    overlayReport: false,
+    absoluteReport: true,
+    opacity: 0.8,
   }),
   
   mounted() {
@@ -42,6 +55,13 @@ export default {
       const report = await GetReportById(this.$route.params.report_id)
       this.report = report.data
     }
+  },
+
+  computed: {
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
   }
 }
 </script>

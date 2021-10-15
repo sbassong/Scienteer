@@ -21,7 +21,7 @@
       </v-row>
       <v-row>
         <v-col v-for="report in project_reports" :key="report.id" cols="1">
-          <ReportCard :report='report' />
+          <ReportCard @click='selectReport(report.id)' :report='report' />
         </v-col>
       </v-row>
     </v-container>
@@ -69,7 +69,11 @@ export default {
     async getReportsProjectId() {
       const res = await GetReportsByProjectId(this.$route.params.id)
       this.project_reports = res.data
-    }
+    },
+
+    selectReport(report_id) {
+      this.$router.push(`/report/${report_id}`)
+    },
   },
 
   computed: {
