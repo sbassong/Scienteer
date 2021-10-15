@@ -13,18 +13,21 @@
 
 <script>
 import {UpdateProject} from '../services/project'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UpdateProjectForm',
 
+  props: {
+    project: Object
+  },
+
   data: () => ({
-    title: referenced_project.title || null,
-    category: referenced_project.category || null,
-    requirements: referenced_project.requirements || null,
-    instructions: referenced_project.instructions || null,
-    current_user: null, //store current user here, then key into attr you need
+    title: this.project.title || null,
+    category: this.project.category || null,
+    requirements: this.project.requirements || null,
+    instructions: this.project.instructions || null,
     categories: ['Ecology', 'Microbiology', 'Marine Biology', 'Ornithology'],
-    referenced_project: null //store project here, will come from store or parent component
   }),
 
   methods: {
@@ -35,15 +38,14 @@ export default {
         category: this.category,
         requirements: this.requirements,
         instructions: this.instructions,
-        // user_id: this.current_user.id,
+        user_id: this.project.user_id,
       }
-      await UpdateProject(referenced_project.id, projectBody)
-      this.title = referenced_project.title || null
-      this.category = referenced_project.category || null
-      this.requirements = referenced_project.requirements || null
-      this.instructions =  referenced_project.instructions || null
-      // this.current_user = null
-      // this.$router.push(`/project/${res.data.id}`)
+      await UpdateProject(this.project.id, projectBody)
+      this.title = this.project.title || null
+      this.category = this.project.category || null
+      this.requirements = this.project.requirements || null
+      this.instructions =  this.project.instructions || null
+      this.$router.push(`/project/${this.project.id}`)
     }
   },
 
@@ -53,7 +55,14 @@ export default {
       if (!this.$v.category.$dirty) return errors
       !this.$v.category.required && errors.push('Item is required')
       return errors
-    }
+    },
+
+    computed: {
+    ...mapState({
+    user: state => state.user,
+    authenticated: state => state.authenticated,
+    }),
+  }
   }
 }
 

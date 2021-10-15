@@ -16,6 +16,10 @@
     </v-row>
 
     <v-container class='project-reports'>
+      <v-row v-if='user.researcher === true && authenticated && user.id === project.user_id' align='center' justify='space-around'>
+        <v-btn @click="overlayProject = !overlay">Edit Project</v-btn>
+        <v-btn @click="deleteProject">Delete Project</v-btn>
+      </v-row>
       <v-row v-if='user.researcher === false && authenticated' align='center' justify='space-around'>
         <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
       </v-row>
@@ -27,8 +31,13 @@
     </v-container>
 
     <v-overlay :absolute="absoluteReport" :opacity='opacity' :value="overlayReport">
-          <ReportForm :project="project"/>
-          <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayReport = false">Cancel</v-btn></v-row>
+      <ReportForm :project="project"/>
+      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayReport = false">Cancel</v-btn></v-row>
+    </v-overlay>
+
+    <v-overlay :absolute="absoluteProject" :opacity='opacity' :value="overlayProject">
+      <UpdateProjectForm :project="project"/>
+      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayProject = false">Cancel</v-btn></v-row>
     </v-overlay>
   </v-container>
 </template>
@@ -38,7 +47,8 @@
 <script>
 import ReportCard from '../components/ReportCard'
 import ReportForm from '../components/ReportForm.vue'
-import { GetProjectById} from '../services/project'
+import UpdateProjectForm from '../components/UpdateProjectForm.vue'
+import { GetProjectById, DeleteProject} from '../services/project'
 import { GetReportsByProjectId} from '../services/report'
 import { mapState } from 'vuex'
 
@@ -48,13 +58,16 @@ export default {
     project: null,
     project_reports: null,
   
+    overlayProject: false,
+    absoluteProject: true,
     overlayReport: false,
     absoluteReport: true,
     opacity: 0.8,
   }),
   components: {
     ReportCard,
-    ReportForm
+    ReportForm,
+    UpdateProjectForm
   },
   mounted() {
     this.getProjectById()
@@ -73,6 +86,11 @@ export default {
 
     selectReport(report_id) {
       this.$router.push(`/report/${report_id}`)
+    },
+
+    async deleteProject() {
+      await DeleteProject(this.project.id)
+      this.$router.push(`/projects`)
     },
   },
 
