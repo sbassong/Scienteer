@@ -35,12 +35,8 @@ export default {
 
   data: () => ({
     allProjects: this.projects,
-
   }),
-
-  mounted() {
-
-  },
+  
   methods: {
     selectProject(project_id) {
       this.$router.push(`/project/${project_id}`)
@@ -54,7 +50,7 @@ export default {
       else this.projects = this.projects.filter(project => project.category = 'Ornithology')
     }
   },
-  
+
   computed: {
     ...mapState(['projects']),
   }

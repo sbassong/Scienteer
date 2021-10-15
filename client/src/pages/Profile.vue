@@ -16,7 +16,7 @@
       </v-sheet>
     </v-navigation-drawer>
 
-    <v-container v-if='current_user.researcher === true'>
+    <v-container v-if='user.researcher === true'>
       <v-row>
         <v-col v-for="project in researcherProjects" :key="project.id" cols="4">
           <ProjectCard @click='selectProject(project.id)' :project='project' />
@@ -54,8 +54,8 @@ export default {
     }),
 
     ...mapGetters({
-      scienteerReports: 'getReportsByScienteerId', 
-      researcherProjects: 'getProjectsByResearcherId'
+      scienteerReports: `getReportsByScienteerId${this.user.id}`, 
+      researcherProjects: `getProjectsByResearcherId${this.user.id}`
     })
   }
 }

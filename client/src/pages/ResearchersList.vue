@@ -12,6 +12,7 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
 import ResearcherCard from '../components/ResearcherCard.vue'
 
 export default {
@@ -20,7 +21,7 @@ export default {
     ResearcherCard
   },
   data: () => ({
-    Researchers: null
+    researchers: this.getResearchers
   }),
   mounted() {
 
@@ -29,6 +30,10 @@ export default {
     selectResearcher(researcher_id) {
       this.$router.push(`/researcher/${researcher_id}`)
     },
+  },
+
+  computed: {
+    ...mapGetters(['getResearchers'])
   }
 }
 </script>
