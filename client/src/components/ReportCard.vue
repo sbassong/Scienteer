@@ -1,9 +1,9 @@
 <template>
 
   <v-card class="mx-auto report-card" max-width="344">
-    <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
-    <v-card-title>Report author name goes here</v-card-title>
-    <v-card-subtitle>first couple sentences of report.content go here</v-card-subtitle>
+    <v-img :src=" report.image ? report.image : 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'" height="200px"></v-img>
+    <v-card-title>{{report.user_id}}</v-card-title>
+    <v-card-subtitle>{{report.content}}</v-card-subtitle>
   </v-card>
 
 </template>
@@ -13,7 +13,7 @@
 export default {
   name: 'ReportCard',
   props: {
-
+    report: Object
   }
 }
 </script>

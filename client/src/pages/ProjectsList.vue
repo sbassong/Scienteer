@@ -13,7 +13,7 @@
 
     <v-container>
       <v-row>
-        <v-col v-for="project in projects" :key="project.id" cols="4">
+        <v-col v-for="project in allProjects" :key="project.id" cols="4">
           <ProjectCard @click='selectProject(project.id)' :project='project' />
         </v-col>
       </v-row>
@@ -36,7 +36,7 @@ export default {
   data: () => ({
     allProjects: this.projects,
   }),
-  
+
   methods: {
     selectProject(project_id) {
       this.$router.push(`/project/${project_id}`)
@@ -44,10 +44,10 @@ export default {
 
     filterProjects(e){
       if (e.target.value === 'All') this.allProjects = this.projects
-      else if (e.target.value === 'Ecology') this.projects = this.projects.filter(project => project.category = 'Ecology')
-      else if (e.target.value === 'Microbiology') this.projects = this.projects.filter(project => project.category = 'Microbiology')
-      else if (e.target.value === 'Marine Biology') this.projects = this.projects.filter(project => project.category = 'Marine Biology')
-      else this.projects = this.projects.filter(project => project.category = 'Ornithology')
+      else if (e.target.value === 'Ecology') this.allProjects = this.projects.filter(project => project.category = 'Ecology')
+      else if (e.target.value === 'Microbiology') this.allProjects = this.projects.filter(project => project.category = 'Microbiology')
+      else if (e.target.value === 'Marine Biology') this.allProjects = this.projects.filter(project => project.category = 'Marine Biology')
+      else this.allProjects = this.projects.filter(project => project.category = 'Ornithology')
     }
   },
 

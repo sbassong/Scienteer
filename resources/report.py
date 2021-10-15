@@ -27,8 +27,14 @@ class Reports(Resource):
         return report.json(), 201
 
 
-#updates and deletes report
+#gets, updates, and deletes report
 class Report_by_id(Resource):
+    def get(self, id):
+        report = Report.find_report_by_id(id)
+        if report:
+            return report.json(), 200
+        return 'report not found', 404
+
     def put(self, id):
         data = request.get_json()
         token = strip_token(request)

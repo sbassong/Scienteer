@@ -2,11 +2,11 @@
   <v-container class='researcher' fluid fill-height>
     <v-row align='center' justify='space-around'>
       <v-container>
-        <v-img max-width="500" src="researcher image goes here"></v-img>
+        <v-img max-width="500" :src="researcher.image"></v-img>
       </v-container>
       
       <v-container>
-        <p>Researcher.bio goes here</p>
+        <p>{{researcher.bio}} </p>
       </v-container>
     </v-row>
 

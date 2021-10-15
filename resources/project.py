@@ -26,8 +26,8 @@ class Projects(Resource):
 
 #update, delete, and get projectDetails
 class Project_by_id(Resource):
-    def get(self, project_id):
-        project = Project.find_project_by_id(project_id)
+    def get(self, id):
+        project = Project.find_project_by_id(id)
         if project:
             return project.json(), 200
         return 'Project not found', 404
