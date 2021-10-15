@@ -24,22 +24,22 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 
-api.add_resource(Login, '/auth/login')
-api.add_resource(CheckSession, '/auth/session')
-api.add_resource(Register, '/auth/register')
-api.add_resource(Get_all_users, '/users')
-api.add_resource(Update_user_profile, '/users/profile/<string:id>')
-api.add_resource(Update_user_password, '/users/profile_pw/<string:id>')
+api.add_resource(Login, '/api/auth/login')
+api.add_resource(CheckSession, '/api/auth/session')
+api.add_resource(Register, '/api/auth/register')
+api.add_resource(Get_all_users, '/api/users')
+api.add_resource(Update_user_profile, '/api/users/profile/<string:id>')
+api.add_resource(Update_user_password, '/api/users/profile_pw/<string:id>')
 
-api.add_resource(Projects, '/projects')
-api.add_resource(Project_by_id, '/project/<string:id>')
-api.add_resource(Project_by_user_id, '/projects/researcher/<string:user_id>')
-api.add_resource(Projects_by_category, '/projects/category/<string:category>')
+api.add_resource(Projects, '/api/projects')
+api.add_resource(Project_by_id, '/api/project/<string:id>')
+api.add_resource(Project_by_user_id, '/api/projects/researcher/<string:user_id>')
+api.add_resource(Projects_by_category, '/api/projects/category/<string:category>')
 
-api.add_resource(Reports, '/reports')
-api.add_resource(Report_by_id, '/report/<string:id>')
-api.add_resource(Report_by_project_id, '/reports/project/<string:project_id>')
-# api.add_resource(Report_image, '/report/image/<string:id>')
+api.add_resource(Reports, '/api/reports')
+api.add_resource(Report_by_id, '/api/report/<string:id>')
+api.add_resource(Report_by_project_id, '/api/reports/project/<string:project_id>')
+# api.add_resource(Report_image, '/api/report/image/<string:id>')
 
 
 if __name__ == '__main__':

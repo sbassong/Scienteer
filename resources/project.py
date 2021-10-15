@@ -24,8 +24,14 @@ class Projects(Resource):
         return project.json(), 201
 
 
-#update and delete project
+#update, delete, and get projectDetails
 class Project_by_id(Resource):
+    def get(self, project_id):
+        project = Project.find_project_by_id(project_id)
+        if project:
+            return project.json(), 200
+        return 'Project not found', 404
+
     def put(self, id):
         data = request.get_json()
         token = strip_token(request)
@@ -71,3 +77,6 @@ class Project_by_user_id(Resource):
         raw_projects = Project.find_projects_by_user_id(user_id)
         projects = [project.json() for project in raw_projects]
         return projects, 200
+
+
+

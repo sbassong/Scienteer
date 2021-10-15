@@ -6,7 +6,7 @@ export const GetAllReports = async () => {
     return res.data
 }
 
-export const GetReportByProjectId = async (project_id) => {
+export const GetReportsByProjectId = async (project_id) => {
     const res = await Client.get(`reports/project/${project_id}`)
     return res.data
 }

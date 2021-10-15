@@ -2,7 +2,7 @@
   <v-container class='researchers' fluid fill-height>
 
     <v-row>
-      <v-col v-for="researcher in researchers" :key="researcher.id" cols="4">
+      <v-col v-for="researcher in getResearchers" :key="researcher.id" cols="4">
         <ResearcherCard @click='selectresearcher(researcher)' :researcher='researcher' />
       </v-col>
     </v-row>
@@ -20,16 +20,11 @@ export default {
   components: {
     ResearcherCard
   },
-  data: () => ({
-    researchers: this.getResearchers
-  }),
-  mounted() {
 
-  },
   methods: {
     selectResearcher(researcher_id) {
       this.$router.push(`/researcher/${researcher_id}`)
-    },
+    }
   },
 
   computed: {

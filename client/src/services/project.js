@@ -11,6 +11,11 @@ export const GetProjectByCategory = async (category) => {
     return res.data
 }
 
+export const GetProjectById = async (project_id) => {
+    const res = await Client.get(`project/${project_id}`)
+    return res.data
+}
+
 export const GetProjectByUserId = async (user_id) => {
     const res = await Client.get(`projects/researcher/${user_id}`)
     return res.data

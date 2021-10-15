@@ -3,15 +3,15 @@
 
     <v-row align='center' justify='space-around'>
       <v-container>
-        <v-img max-width="300" src="project image goes here"></v-img>
+        <v-img max-width="300" src="project.image"></v-img>
       </v-container>
 
       <v-container>
-        <p>Requirements will go here</p>
+        <p>{{project.requirements}}</p>
       </v-container>
 
       <v-container>
-        <p>Instructions go here</p>
+        <p>{{project.instructions}}</p>
       </v-container>
     </v-row>
 
@@ -30,6 +30,8 @@
 
 <script>
 import ReportCard from '../components/ReportCard'
+import { GetProjectById} from '../services/project'
+import { GetReportsByProjectId} from '../services/report'
 
 export default {
   name: 'ProjectDetails',
@@ -41,11 +43,21 @@ export default {
     ReportCard
   },
   mounted() {
-
+    this.getProjectById()
+    this.getReportsProjectId()
   },
   methods: {
-    
+    async getProjectById() {
+      const res = await GetProjectById(this.$route.params.id)
+      this.project = res.data
+    },
+
+    async getReportsProjectId() {
+      const res = await GetReportsByProjectId(this.$route.params.id)
+      this.project_reports = res.data
+    }
   }
+
 }
 </script>
 
