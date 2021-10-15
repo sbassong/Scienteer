@@ -17,7 +17,9 @@
       </v-container>
 
       <v-row v-if='user.researcher === false && authenticated && user.id === report.user_id' align='center' justify='space-around'>
-        <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
+        <v-btn @click="overlayReport = !overlay">Edit Report</v-btn>
+        <v-btn @click="deleteReport">Delete Report</v-btn>
+
       </v-row>
 
       <v-overlay :absolute="absoluteReport" :opacity='opacity' :value="overlayReport">
@@ -30,7 +32,7 @@
 
 
 <script>
-import {GetReportById} from '../services/report'
+import {GetReportById, DeleteReport} from '../services/report'
 import UpdateReportForm from '../components/UpdateReportForm.vue'
 import { mapState } from 'vuex'
 
@@ -54,6 +56,11 @@ export default {
     async getReportById() {
       const report = await GetReportById(this.$route.params.report_id)
       this.report = report.data
+    },
+
+    async deleteReport() {
+      await DeleteReport(this.report.id)
+      this.$router.push(`/project/${this.report.project_id}`)
     }
   },
 
