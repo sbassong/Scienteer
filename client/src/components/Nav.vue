@@ -20,12 +20,7 @@
         <v-tab><router-link to='/researchers'><h2>Researchers</h2></router-link></v-tab>
         <v-tab><router-link to='/about'><h2>About</h2></router-link></v-tab>
       </v-tabs>
-      <h3 @click="overlayRegister = !overlay">Join Us!</h3>
-
-      <v-overlay :opacity="opacityRegister" :value="overlayRegister">
-        <RegisterForm />
-        <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayRegister = false">Cancel</v-btn></v-row>
-      </v-overlay>
+      <router-link to='/users/register'><h3>Join Us!</h3></router-link>
 
   </v-app-bar>
 </template>
@@ -33,18 +28,11 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import RegisterForm from './RegisterForm.vue'
 
 export default {
   name: 'Nav',
   components: {
-    RegisterForm
   },
-  data:() => ({
-    absoluteRegister: true,
-    overlayRegister: false,
-    opacityRegister: 0.8
-  }),
   methods: {
     ...mapActions(['setUser', 'toggleAuthenticated']),
 
@@ -56,10 +44,12 @@ export default {
     },
   },
 
-  computed: mapState({
-    user: state => state.user,
-    authenticated: state => state.authenticated
-  }),
+  computed: {
+    ...mapState({
+      user: state => state.user,
+      authenticated: state => state.authenticated
+    }),
+  }
 }
 </script>
 

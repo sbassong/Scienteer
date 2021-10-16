@@ -1,11 +1,8 @@
 <template>
   <form >
     <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" filled shaped ></v-text-field>
-    <v-divider></v-divider>
     <v-select v-model="category" :categories="categories" :error-messages="selectErrors" label="Project Category"  @change="$v.category.$touch()" @blur="$v.category.$touch()"></v-select>
-    <v-divider></v-divider>
     <v-textarea v-model="requirements" label="Scienteer Requirements" @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-divider></v-divider>
     <v-textarea v-model="instructions" label="Project Instructions"  @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
     <v-btn class="mr-4" @click='handleSubmit'>Resubmit Project</v-btn>
   </form>

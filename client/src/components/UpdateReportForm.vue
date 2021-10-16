@@ -1,11 +1,8 @@
 <template>
   <form >
     <v-textarea v-model="content" label="Report content" @change="$v.content.$touch()" @blur="$v.content.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-divider></v-divider>
     <v-text-field v-model="location" label="Location" @change="$v.location.$touch()" @blur="$v.location.$touch()" filled shaped ></v-text-field>
-    <v-divider></v-divider>
     <v-file-input v-model='image'  label="Images" @change="$v.image.$touch()" @blur="$v.image.$touch()" accept="image/*" prepend-icon="mdi-camera" multiple></v-file-input>
-    <v-divider></v-divider>
     <v-btn class="mr-4" @click='handleSubmit'>Resubmit Report</v-btn>
   </form>
 </template>
