@@ -11,7 +11,7 @@ export const RegisterUser = async (data) => {
     return res.data
 }
 
-export const CheckSession = async (token) => {
-    const res = await Client.get('auth/session', {headers: { Authorization: token }})
+export const CheckSession = async () => {
+    const res = await Client.get('auth/session')
     return res.data
 }

@@ -22,14 +22,10 @@ export default {
     Nav
   },
 
-  mounted() {
-    
-  },
-
   created() {
     console.log('this is created')
-    this.getData()
     this.checkToken()
+    this.getData()
   },
 
   methods: {
@@ -38,7 +34,7 @@ export default {
     async checkToken() {
       const token = await localStorage.getItem('token')
       if (token) {
-        const sessionUser = await CheckSession(token)
+        const sessionUser = await CheckSession()
         this.setUser(sessionUser)
         this.toggleAuthenticated(true)
         localStorage.setItem('authenticated', '1')
