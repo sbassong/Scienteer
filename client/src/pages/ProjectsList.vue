@@ -11,7 +11,7 @@
       </v-btn-toggle>
     </v-col>
 
-    <v-container>
+    <v-container fluid fill-height>
       <v-row>
         <v-col v-for="project in allProjects" :key="project.id" cols="4">
           <ProjectCard :project='project' />
@@ -34,16 +34,24 @@ export default {
   },
 
   data: () => ({
-    allProjects: this.projects,
+    allProjects: null,
   }),
+
+  mounted() {
+    this.renderProjects()
+  },
 
   methods: {
     filterProjects(e){
-      if (e.target.value === 'All') this.allProjects = this.projects
-      else if (e.target.value === 'Ecology') this.allProjects = this.projects.filter(project => project.category = 'Ecology')
-      else if (e.target.value === 'Microbiology') this.allProjects = this.projects.filter(project => project.category = 'Microbiology')
-      else if (e.target.value === 'Marine Biology') this.allProjects = this.projects.filter(project => project.category = 'Marine Biology')
-      else this.allProjects = this.projects.filter(project => project.category = 'Ornithology')
+      if (e.target.value === 'Ornithology')this.allProjects = this.projects.filter(project => project.category === e.target.value)
+      else if (e.target.value === 'Ecology') this.allProjects = this.projects.filter(project => project.category === e.target.value)
+      else if (e.target.value === 'Microbiology') this.allProjects = this.projects.filter(project => project.category === e.target.value)
+      else if (e.target.value === 'Marine Biology') this.allProjects = this.projects.filter(project => project.category === e.target.value)
+      else this.allProjects = this.projects
+    },
+
+    renderProjects () {
+      this.allProjects = this.projects
     }
   },
 

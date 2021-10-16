@@ -28,7 +28,6 @@
 <script>
 import { mapState } from 'vuex'
 import ProjectCard from '../components/ProjectCard'
-// import {GetProjectsByUserId} from '../services/project'
 
 export default {
   name: 'ResearcherDetails',
@@ -40,7 +39,6 @@ export default {
   components: {
     ProjectCard
   },
-
 
   mounted(){
     this.getProjectsByUserId()
