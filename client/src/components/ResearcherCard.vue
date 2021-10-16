@@ -1,6 +1,6 @@
 <template>
   <v-hover v-slot="{ hover }">
-    <v-card class="mx-auto" max-width="344">
+    <v-card class="mx-auto" max-width="344" @click='selectResearcher(researcher.id)'>
 
       <v-img :src="researcher.image ? researcher.image : 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'" height="200px"></v-img>
       <v-card-title>{{researcher.name}}</v-card-title>
@@ -18,7 +18,13 @@ export default {
   name: 'ResearcherCard',
   props: {
     researcher: Object
-  }
+  },
+
+  methods: {
+    selectResearcher(researcher_id) {
+      this.$router.push(`/researcher/${researcher_id}`)
+    }
+  },
 }
 </script>
 

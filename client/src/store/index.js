@@ -10,7 +10,21 @@ export default new Vuex.Store({
 
     users: [],
     projects: [],
-    reports: []
+    reports: [],
+
+    ecoProjects: [],
+    microProjects: [],
+    marProjects: [],
+    orPorjects: [],
+
+    researcherDetails: {}, //RD
+    researcherProjects: [], //RPs
+
+    projectDetails: {}, //PD
+    projectReports: {}, //PRs
+    
+    reportDetails: {}, // RDs
+    
   },
   
   //mutations. funcs that are solely responsible for manipulation store state
@@ -20,7 +34,13 @@ export default new Vuex.Store({
     
     setUsers: (state, data) => state.users = data,
     setProjects: (state, data) => state.projects = data,
-    setReports: (state, data) => state.reports = data
+    setReports: (state, data) => state.reports = data,
+
+    RD: (state, data) => state.researcherDetails = data,
+    RPs: (state, data) => state.researcherProjects = data,
+    PD: (state, data) => state.projectDetails = data,
+    PRs: (state, data) => state.projectReports = data,
+    RDs: (state, data) => state.reportDetails = data,
   },
   
   //actions. methods used in the app to commit mutations
@@ -30,7 +50,14 @@ export default new Vuex.Store({
     
     setUsers: (context, data) => context.commit('setUsers', data),
     setProjects: (context, data) => context.commit('setProjects', data),
-    setReports: (context, data) => context.commit('setReports', data)
+    setReports: (context, data) => context.commit('setReports', data),
+
+
+    RD: (context, data) => context.commit('RD', data),
+    RPs: (context, data) => context.commit('RPs', data),
+    PD: (context, data) => context.commit('PD', data),
+    PRs: (context, data) => context.commit('PRs', data),
+    RDs: (context, data) => context.commit('RDs', data),
   },
 
   //getters. methods used in the app to get store state data

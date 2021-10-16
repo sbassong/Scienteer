@@ -14,7 +14,7 @@
     <v-container>
       <v-row>
         <v-col v-for="project in allProjects" :key="project.id" cols="4">
-          <ProjectCard @click='selectProject(project.id)' :project='project' />
+          <ProjectCard :project='project' />
         </v-col>
       </v-row>
     </v-container>
@@ -38,10 +38,6 @@ export default {
   }),
 
   methods: {
-    selectProject(project_id) {
-      this.$router.push(`/project/${project_id}`)
-    },
-
     filterProjects(e){
       if (e.target.value === 'All') this.allProjects = this.projects
       else if (e.target.value === 'Ecology') this.allProjects = this.projects.filter(project => project.category = 'Ecology')

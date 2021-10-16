@@ -50,7 +50,7 @@ class Register(Resource):
     }
     user = User(**params)
     user.create()
-    return user.json(), 201
+    return user.client_json(), 201
 
 #handles updates to password
 class Update_user_password(Resource):
@@ -74,7 +74,7 @@ class Update_user_profile(Resource):
       for key in data:
         setattr(user, key, data[key])
       db.session.commit()
-      return user.json(), 200
+      return user.client_json(), 200
     return {"msg": "Unmatched user"}, 404
 
 #handles updating user avatar
@@ -91,14 +91,14 @@ class Update_user_avatar(Resource):
         for key in {"avatar": uploaded}:
           setattr(user, key, file[key])
       db.session.commit()
-      return user.json(), 200
+      return user.client_json(), 200
     return {"msg": "Error"}, 400
 
 #handles getting all users
 class Get_all_users(Resource):
   def get(self):
     raw_users = User.find_all_users()
-    users = [user.json() for user in raw_users]
+    users = [user.client_json() for user in raw_users]
     return users
 
 

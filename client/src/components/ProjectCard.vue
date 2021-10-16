@@ -1,6 +1,6 @@
 <template>
   <v-hover v-slot="{ hover }">
-    <v-card class="mx-auto" max-width="344">
+    <v-card class="mx-auto" max-width="344" @click='selectProject(project.id)'>
 
       <v-img :src="project.image ? project.image : 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'" height="200px'"></v-img>
       <v-card-title>{{project.title}}</v-card-title>
@@ -20,6 +20,12 @@ export default {
   name: 'ProjectCard',
   props: {
     project: Object
+  },
+
+  methods: {
+    selectProject(project_id) {
+      this.$router.push(`/project/${project_id}`)
+    },
   }
 }
 </script>

@@ -32,6 +32,9 @@ class User(db.Model):
     def json(self):
         return {"id": str(self.id), "name": self.name, "email": self.email, "avatar":  self.avatar, "password_digest": self.password_digest, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
 
+    def client_json(self):
+        return {"id": str(self.id), "name": self.name, "email": self.email, "avatar":  self.avatar, "bio": self.bio, "researcher": self.researcher, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+
     def create(self):
         db.session.add(self)
         db.session.commit()
@@ -43,7 +46,7 @@ class User(db.Model):
 
     @classmethod
     def find_user_by_id(cls, id):
-        user = User.query.filter_by(id=id).first_or_404()
+        user = User.query.get_or_404(id)
         return user
 
     @classmethod
