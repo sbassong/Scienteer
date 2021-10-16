@@ -93,8 +93,8 @@ export default {
     }),
 
     ...mapGetters({
-      scienteerReports: `getReportsByScienteerId${this.user.id}`, 
-      researcherProjects: `getProjectsByResearcherId${this.user.id}`
+      scienteerReports: `getReportsByScienteerId`, 
+      researcherProjects: `getProjectsByResearcherId`
     })
   }
 }

@@ -48,7 +48,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters([`getResearcherById${this.$route.params.researcher_id}`])
+    ...mapGetters([`getResearcherById`])
   }
 }
 </script>
