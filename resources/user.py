@@ -23,7 +23,6 @@ class Login(Resource):
         "researcher": user["researcher"]
       }
       token = create_token(payload)
-      print('this is payload on backend call', payload)
       return {"user" : payload, "token": token}, 200
     return {"msg": "Unauthorized access"}, 401
 
@@ -33,7 +32,6 @@ class CheckSession(Resource):
     token = strip_token(request)
     if token:
       payload = read_token(token)
-      print('this is checksession backend return PAYLOAD', payload)
       return payload, 200
     return {"msg": "Unauthorized access"}, 401
 

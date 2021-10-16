@@ -23,7 +23,6 @@ export default {
   },
 
   created() {
-    console.log('this is created')
     this.checkToken()
     this.getData()
   },
@@ -43,11 +42,11 @@ export default {
 
     async getData() {
       const users = await GetAllUsers()
-      this.setUsers(users.data)
+      this.setUsers(users)
       const projects = await GetAllProjects()
-      this.setProjects(projects.data)
+      this.setProjects(projects)
       const reports = await GetAllReports()
-      this.setReports(reports.data)
+      this.setReports(reports)
     } 
   },
 
