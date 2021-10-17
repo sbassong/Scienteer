@@ -19,18 +19,31 @@
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-btn @click="overlayProfile = !overlay" color='primary' class='mb-5' rounded>Update Profile</v-btn>
         <v-btn @click="overlayPass = !overlay" color='purple' class='mb-5' dark rounded>Update Password</v-btn>
+        <v-btn @click="overlayAv = !overlay" color='purple' class='mb-5' dark rounded>Update Avatar</v-btn>
+        <v-btn @click="overlayP = !overlay" color='purple' class='mb-5' dark rounded>Build Project</v-btn>
       </v-sheet>
     </v-navigation-drawer>
+
+    <v-overlay :absolute="absoluteProfile" :opacity='opacity' :value="overlayProfile">
+      <UpdateProfileForm />
+      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayProfile = false">Cancel</v-btn></v-row>
+    </v-overlay>
 
     <v-overlay :absolute="absolutePass" :opacity='opacity' :value="overlayPass">
       <UpdatePasswordForm />
       <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayPass = false">Cancel</v-btn></v-row>
     </v-overlay>
 
-    <v-overlay :absolute="absoluteProfile" :opacity='opacity' :value="overlayProfile">
-      <UpdateProfileForm />
-      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayProfile = false">Cancel</v-btn></v-row>
+    <v-overlay :absolute="absoluteAv" :opacity='opacity' :value="overlayAv">
+      <UpdateAvatarForm />
+      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayAv = false">Cancel</v-btn></v-row>
     </v-overlay>
+
+    <v-overlay :absolute="absoluteP" :opacity='opacity' :value="overlayP">
+      <ProjectForm />
+      <v-row align="center" justify="center"><v-btn  color="red" dark @click="overlayP = false">Cancel</v-btn></v-row>
+    </v-overlay>
+
 
     <v-container v-if='user.researcher === true'>
       <v-row>
@@ -56,6 +69,8 @@ import ProjectCard from '../components/ProjectCard.vue'
 import ReportCard from '../components/ReportCard.vue'
 import UpdateProfileForm from '../components/UpdateProfileForm.vue'
 import UpdatePasswordForm from '../components/UpdatePasswordForm.vue'
+import UpdateAvatarForm from '../components/UpdateAvatarForm.vue'
+import ProjectForm from '../components/ProjectForm.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -64,7 +79,9 @@ export default {
     ProjectCard,
     ReportCard,
     UpdateProfileForm,
-    UpdatePasswordForm
+    UpdatePasswordForm,
+    UpdateAvatarForm,
+    ProjectForm
   },
 
   data:()=> ({
@@ -73,6 +90,10 @@ export default {
     overlayProfile: false,
     absolutePass: true,
     overlayPass: false,
+    absoluteAv: true,
+    overlayAv: false,
+    absoluteP: true,
+    overlayP: false,
 
     researcherProjects: null,
     scienteerReports: null
