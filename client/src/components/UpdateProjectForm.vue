@@ -1,11 +1,14 @@
 <template>
+  <v-card class="mx-auto px-5 " align='center' justify='center' width='700' height="auto">
+  <v-card-title class="justify-center">Register Form</v-card-title>
   <form >
     <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" filled shaped ></v-text-field>
     <v-select v-model="category" :categories="categories" :error-messages="selectErrors" label="Project Category"  @change="$v.category.$touch()" @blur="$v.category.$touch()"></v-select>
     <v-textarea v-model="requirements" label="Scienteer Requirements" @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
     <v-textarea v-model="instructions" label="Project Instructions"  @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-btn class="mr-4" @click='handleSubmit'>Resubmit Project</v-btn>
+    <v-row align="center" justify="center"><v-btn class="mr-4 mb-5 mt-2" @click='handleSubmit'>Resubmit Project</v-btn></v-row>
   </form>
+  </v-card>
 </template>
 
 <script>

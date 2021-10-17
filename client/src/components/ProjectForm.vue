@@ -1,11 +1,14 @@
 <template>
-  <form >
-    <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" required filled shaped ></v-text-field>
-    <v-select v-model="category" :categories="categories" :error-messages="selectErrors" label="Project Category" required @change="$v.category.$touch()" @blur="$v.category.$touch()"></v-select>
-    <v-textarea v-model="requirements" label="Scienteer Requirements" required @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-textarea v-model="instructions" label="Project Instructions" required @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
-    <v-row align="center" justify="center"><v-btn class="mr-4" @click='handleSubmit'>Submit Project</v-btn></v-row>
-  </form>
+  <v-card class="mx-auto px-5 " align='center' justify='center' width='700' height="auto">
+    <v-card-title class="justify-center">Project Builder</v-card-title>
+    <form >
+      <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" required filled shaped ></v-text-field>
+      <v-select v-model="category" :categories="categories" :error-messages="selectErrors" label="Project Category" required @change="$v.category.$touch()" @blur="$v.category.$touch()"></v-select>
+      <v-textarea v-model="requirements" label="Scienteer Requirements" required @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
+      <v-textarea v-model="instructions" label="Project Instructions" required @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
+      <v-row align="center" justify="center"><v-btn class="mr-4" @click='handleSubmit'>Submit Project</v-btn></v-row>
+    </form>
+  </v-card >
 </template>
 
 <script>

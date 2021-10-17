@@ -3,20 +3,25 @@
 
     <v-row align='center' justify='space-around'>
       <v-container>
-        <v-img max-width="300" :src="project.image ? project.image : 'https://i.imgur.com/H72Sdq7.jpg?1'"></v-img>
+        <v-img max-width="300" :src="project.image && project.image.length > 100 ? project.image : 'https://i.imgur.com/H72Sdq7.jpg?1'"></v-img>
+        <v-container>
+          <h3>Title: {{project.title}}</h3>
+        </v-container>
       </v-container>
 
       <v-container>
+        <h3>Requirements:</h3>
         <p>{{project.requirements}}</p>
       </v-container>
 
       <v-container>
+        <h3>Instructions:</h3>
         <p>{{project.instructions}}</p>
       </v-container>
     </v-row>
 
     <v-container class='project-reports'>
-      <v-row v-if='user.researcher === true && authenticated && user.id === project.user_id' align='center' justify='space-around'>
+      <v-row v-if='user.researcher === true && user.id === project.user_id' align='center' justify='space-around'>
         <v-btn @click="overlayProject = !overlay">Edit Project</v-btn>
         <v-btn @click="deleteProject">Delete Project</v-btn>
       </v-row>
@@ -25,7 +30,7 @@
       </v-row>
       <v-row>
         <v-col v-for="report in project_reports" :key="report.id" cols="1">
-          <ReportCard @click='selectReport(report.id)' :report='report' />
+          <ReportCard :report='report' />
         </v-col>
       </v-row>
     </v-container>
@@ -53,6 +58,7 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'ProjectDetails',
+
   data: () => ({
     project: null,
     project_reports: null,
@@ -63,24 +69,24 @@ export default {
     absoluteReport: true,
     opacity: 0.8,
   }),
+
   components: {
     ReportCard,
     ReportForm,
     UpdateProjectForm
   },
+
   mounted() {
     this.getProjectById()
-    this.getReportsProjectId()
   },
+
   methods: {
     async getProjectById() {
-      const res = await GetProjectById(this.$route.params.id)
-      this.project = res.data
-    },
+      const res = await GetProjectById(this.$route.params.project_id)
+      this.project = res
 
-    async getReportsProjectId() {
-      const res = await GetReportsByProjectId(this.$route.params.id)
-      this.project_reports = res.data
+      const ress = await GetReportsByProjectId(this.$route.params.project_id)
+      this.project_reports = ress
     },
 
     selectReport(report_id) {

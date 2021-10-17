@@ -31,8 +31,7 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Nav',
-  components: {
-  },
+
   methods: {
     ...mapActions(['setUser', 'toggleAuthenticated']),
 

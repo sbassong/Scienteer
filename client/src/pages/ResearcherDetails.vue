@@ -6,13 +6,15 @@
       </v-container>
       
       <v-container>
-        <p>{{researcher.name}} </p>
-        <p>{{researcher.email}} </p>
+        <p>Name: {{researcher.name}} </p>
+        <p>Email: {{researcher.email}} </p>
+        <h4>Bio:</h4>
         <p>{{researcher.bio}} </p>
       </v-container>
     </v-row>
 
     <v-container class='researcher-projects'>
+      <h3>{{researcher.name}}'s ongoing projects:</h3>
       <v-row>
         <v-col v-for="project in researcher_projects" :key="project.id" cols="2">
           <ProjectCard :project='project' />

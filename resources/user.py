@@ -16,6 +16,7 @@ class Login(Resource):
     if user and compare_password(data["password"], user.password_digest):
       user = user.json()
       payload = {
+        "name": user["name"],
         "id": user["id"],
         "email": user["email"],
         "bio": user["bio"],
