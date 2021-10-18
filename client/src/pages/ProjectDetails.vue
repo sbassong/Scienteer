@@ -29,17 +29,16 @@
 
     <v-container class='project-reports'>
 
-      <v-row  align='center' justify='space-around'>
-        <!-- <v-btn @click="overlayProject = !overlay">Edit Project</v-btn> -->
-        <v-btn @click="selectPrUp">Edit Project</v-btn>
+      <v-row v-if='user && user.researcher === true && user.id === project.user_id' align='center' justify='space-around'>
+        <v-btn @click="overlayProject = !overlay">Edit Project</v-btn>
         <v-btn @click="deleteProject">Delete Project</v-btn>
       </v-row>
 
-      <v-row  align='center' justify='space-around'>
+      <v-row v-if='user && user.researcher === false && authenticated && !project.scienteers.includes(project.scienteers.filter(obj => obj === user)[0])' align='center' justify='space-around'>
         <v-btn @click="appendToProject">Join the Project!</v-btn>
       </v-row>
 
-      <v-row  align='center' justify='space-around'>
+      <v-row v-if='user && user.researcher === false && authenticated && (project.scienteers.includes(user) === true)' align='center' justify='space-around'>
         <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
       </v-row>
 
@@ -106,10 +105,6 @@ export default {
 
     selectReport(report_id) {
       this.$router.push(`/report/${report_id}`)
-    },
-
-    selectPrUp() {
-      this.$router.push("/projects/project/update")
     },
 
     async deleteProject() {

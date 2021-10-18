@@ -42,29 +42,29 @@ class Project_by_id(Resource):
 
     def put(self, id):
         data = request.get_json()
-        # token = strip_token(request)
-        # payload = read_token(token)
-        # if payload:
-        project = Project.find_project_by_id(id)
-        # if payload["id"] == str(project.user_id):
-        for key in data:
-            setattr(project, key, data[key])
-        db.session.commit()
-        return project.json(), 200
-            # return {"msg": "Unauthorized credentials"}, 401
-        # return {"msg": "Unauthorized access"}, 404
+        token = strip_token(request)
+        payload = read_token(token)
+        if payload:
+            project = Project.find_project_by_id(id)
+            if payload["id"] == str(project.user_id):
+                for key in data:
+                    setattr(project, key, data[key])
+                db.session.commit()
+                return project.json(), 200
+            return {"msg": "Unauthorized credentials"}, 401
+        return {"msg": "Unauthorized access"}, 404
 
     def delete(self, id):
-        # token = strip_token(request)
-        # payload = read_token(token)
-        # if payload:
-        project = Project.find_project_by_id(id)
-        # if payload["id"] == str(project.user_id):
-        db.session.delete(project)
-        db.session.commit()
-        return {"msg": "Project deleted!"}, 200
-        # return {"msg": "Unauthorized credentials"}, 401
-        # return {"msg": "Unauthorized access"}, 404
+        token = strip_token(request)
+        payload = read_token(token)
+        if payload:
+            project = Project.find_project_by_id(id)
+            if payload["id"] == str(project.user_id):
+                db.session.delete(project)
+                db.session.commit()
+                return {"msg": "Project deleted!", "payload": str(project.id)}, 200
+            return {"msg": "Unauthorized credentials"}, 401
+        return {"msg": "Unauthorized access"}, 404
 
 
 #handles get projects for category display

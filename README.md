@@ -25,6 +25,7 @@
 * Google Maps API
 * Vue2-google-maps
 * vue-browser-geolocation
+* vuelidation
 * CSS
 * Heroku
 * Netlify

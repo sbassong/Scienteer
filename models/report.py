@@ -56,7 +56,7 @@ class Report(db.Model):
 
     @classmethod
     def find_report_by_id(cls, id):
-        report = Report.query.filter_by(id=id).first_or_404()
+        report = Report.query.filter_by(id=id).first()
         return report
 
     @classmethod

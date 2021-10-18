@@ -103,6 +103,10 @@ export default {
     scienteerReports: []
   }),
 
+  beforeMount() {
+    this.getUserDetails()
+  },
+
   mounted(){
     this.getUserDetails()
   },
