@@ -46,12 +46,12 @@ class User(db.Model):
 
     @classmethod
     def find_user_by_id(cls, id):
-        user = User.query.get_or_404(id)
+        user = User.query.filter_by(id=id).first()
         return user
 
     @classmethod
     def find_user_by_email(cls, email):
-        user = User.query.filter_by(email=email).first_or_404()
+        user = User.query.filter_by(email=email).first()
         return user
         
     @classmethod

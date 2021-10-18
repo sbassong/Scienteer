@@ -20,9 +20,10 @@
 
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-btn @click="overlayProfile = !overlay" color='primary' class='mb-5' rounded>Update Profile</v-btn>
-        <v-btn @click="overlayPass = !overlay" color='purple' class='mb-5' dark rounded>Update Password</v-btn>
-        <v-btn @click="overlayAv = !overlay" color='purple' class='mb-5' dark rounded>Update Avatar</v-btn>
-        <v-btn @click="overlayP = !overlay" color='purple' class='mb-5' dark rounded v-if="user.researcher === true">Build Project</v-btn>
+        <v-btn @click="overlayPass = !overlay" color='primary' class='mb-5' dark rounded>Update Password</v-btn>
+        <v-btn @click="overlayAv = !overlay" color='primary' class='mb-5' dark rounded>Update Avatar</v-btn>
+        <v-btn @click="deleteUser" color='red' class='mb-5' dark rounded>Delete account</v-btn>
+        <v-btn @click="overlayP = !overlay" color='secondary' class='mb-5' dark rounded v-if="user.researcher === true">Build Project</v-btn>
       </v-sheet>
     </v-navigation-drawer>
 
@@ -73,6 +74,7 @@ import UpdateProfileForm from '../components/UpdateProfileForm.vue'
 import UpdatePasswordForm from '../components/UpdatePasswordForm.vue'
 import UpdateAvatarForm from '../components/UpdateAvatarForm.vue'
 import ProjectForm from '../components/ProjectForm.vue'
+import {DeleteUser} from '../services/user.js'
 import { mapState } from 'vuex'
 
 export default {
@@ -101,10 +103,6 @@ export default {
     scienteerReports: []
   }),
 
-  beforeMount() {
-    this.getUserDetails()
-  },
-
   mounted(){
     this.getUserDetails()
   },
@@ -130,6 +128,14 @@ export default {
 
     async getUserDetails() {
       this.user.researcher === true ? this.getProjects() : this.getReports()
+    }, 
+
+    async deleteUser() {
+      await DeleteUser(this.user.id)
+      this.setUser(null)
+      this.toggleAuthenticated(false)
+      localStorage.clear()
+      this.$router.push('/')
     }
   },
 

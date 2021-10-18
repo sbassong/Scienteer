@@ -10,11 +10,13 @@ import ProjectDetails from './pages/ProjectDetails'
 import ReportDetails from './pages/ReportDetails'
 import LoginFormPage from './pages/LoginFormPage'
 import RegisterFormPage from './pages/RegisterFormPage'
+import UpdateProjectForm from './components/UpdateProjectForm'
 
 const routes = [
   {path: '/', component: Home, name: 'Home'},
   {path: '/users/login', component: LoginFormPage, name: 'LoginFormPage'}, 
   {path: '/users/register', component: RegisterFormPage, name: 'RegisterFormPage'}, 
+  {path: '/projects/project/update', component: UpdateProjectForm, name: 'UpdateProjectForm'}, 
   {path: '/about', component: About, name: 'About'},
   {path: '/profile', component: Profile, name: 'Profile'},
   {path: '/researchers', component: ResearchersList, name: 'ResearchersList'},

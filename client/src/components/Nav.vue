@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="secondary" flat v-if="user && authenticated">
+  <v-app-bar app color="accent" flat v-if="user && authenticated">
       <router-link to='/'><v-img class="mr-3" src="https://i.imgur.com/fOsxALqm.png" height="64px" width="140px"></v-img></router-link>
       <v-tabs centered  class="ml-n9" color="purple darken-1">
         <v-tab><router-link to='/'><h2>Home</h2></router-link></v-tab>

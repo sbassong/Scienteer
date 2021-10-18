@@ -27,6 +27,10 @@ export default {
     this.getData()
   },
 
+  mounted() {
+    this.getData()
+  },
+
   methods: {
     ...mapActions(['setUser','toggleAuthenticated', 'setUsers', 'setProjects', 'setReports']),
 

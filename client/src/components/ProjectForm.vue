@@ -41,7 +41,7 @@ export default {
   methods: {
     async handleSubmit(event) {
       event.preventDefault()
-      console.log("firing")
+
       const projectBody = {
         title: this.title,
         category: this.whichCategory(),
@@ -56,12 +56,12 @@ export default {
 
       let formData = new FormData()
       formData.append("image" , imageBody["image"])
-      console.log("firing 2" )
+    
       
       const createdProj = await CreateProject(projectBody)
-      console.log("creproj", createdProj)
+
       const updatedProj = await UpdateProjectImg(createdProj.id, formData)
-      console.log("upproj", updatedProj)
+
 
       this.title = ''
       this.requirements = '' 

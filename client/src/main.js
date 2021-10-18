@@ -9,7 +9,7 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store/index'
 
-const GMAPS_KEY=process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+const GMAPS_KEY=process.env.GOOGLE_MAPS_API_KEY
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)

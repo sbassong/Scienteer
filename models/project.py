@@ -60,7 +60,7 @@ class Project(db.Model):
 
     @classmethod
     def find_project_by_id(cls,id):
-        project = Project.query.filter_by(id=id).first_or_404()
+        project = Project.query.filter_by(id=id).first()
         return project
     
     @classmethod

@@ -99,6 +99,13 @@ class Get_all_users(Resource):
     return users
 
 
+class Delete_user(Resource):
+  def delete(self, id):
+    user = User.find_user_by_id(id)
+    db.session.delete(user)
+    db.session.commit()
+    return {"msg": "user deleted!"}, 200
+
 
 
 

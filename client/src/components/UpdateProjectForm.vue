@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto px-5 " align='center' justify='center' width='700' height="auto">
-  <v-card-title class="justify-center">Register Form</v-card-title>
+  <v-card-title class="justify-center">Update project form</v-card-title>
   <form >
     <v-text-field v-model="title" label="Project Title" @change="$v.title.$touch()" @blur="$v.title.$touch()" filled shaped ></v-text-field>
-    <v-select v-model="select" :items="categories" :error-messages="selectErrors" label="Project Category"  @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
+    <!-- <v-select v-model="select" :items="categories" :error-messages="selectErrors" label="Project Category" required  @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select> -->
     <v-textarea v-model="requirements" label="Scienteer Requirements" @change="$v.requirements.$touch()" @blur="$v.requirements.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
     <v-textarea v-model="instructions" label="Project Instructions"  @change="$v.instructions.$touch()" @blur="$v.instructions.$touch()" counter filled shaped full-width auto-grow ></v-textarea>
     <v-row align="center" justify="center"><v-btn class="mr-4 mb-5 mt-2" @click='handleSubmit'>Resubmit Project</v-btn></v-row>
@@ -41,11 +41,12 @@ export default {
   }),
 
   methods: {
+
     async handleSubmit(event) {
       event.preventDefault()
       const projectBody = {
         title: this.title,
-        category: this.whichCategory(),
+        category: this.category,
         requirements: this.requirements,
         instructions: this.instructions,
         user_id: this.project.user_id,
@@ -59,15 +60,15 @@ export default {
       formData.append("image" , imageBody["image"])
 
       const upPro = await UpdateProject(this.project.id, projectBody)
-      console.log(upPro)
-      const upProjImg = await UpdateProjectImg(upPro.id, formData)
-      console.log("upprojimg", upProjImg)
 
-      this.title = this.project.title || null
-      this.category = this.project.category || null
-      this.requirements = this.project.requirements || null
-      this.instructions =  this.project.instructions || null
-      this.image =  this.project.image || null
+      const upProjImg = await UpdateProjectImg(upPro.id, formData)
+      console.log(upProjImg)
+
+      this.title = this.project.title
+      this.category = this.project.category
+      this.requirements = this.project.requirements
+      this.instructions =  this.project.instructions
+      this.image =  this.project.image 
       this.$router.push(`/project/${this.project.id}`)
     },
 
@@ -87,13 +88,9 @@ export default {
       return errors
     },
 
-    computed: {
-    ...mapState({
-    user: state => state.user,
-    authenticated: state => state.authenticated,
-    }),
-  }
+    ...mapState(['user', 'authenticated', 'projects']),
   }
 }
+
 
 </script>
