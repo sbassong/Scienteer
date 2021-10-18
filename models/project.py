@@ -62,3 +62,11 @@ class Project(db.Model):
     def find_project_by_id(cls,id):
         project = Project.query.filter_by(id=id).first_or_404()
         return project
+    
+    @classmethod
+    def update(cls, id, fields):
+        project = Project.find_project_by_id(id)
+        for key in fields:
+            setattr(project, key, fields[key])
+        db.session.commit()
+        return project.json()

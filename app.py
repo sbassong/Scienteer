@@ -7,8 +7,8 @@ from models.db import db
 from models import user, report, project
 
 from resources.user import Login, Register, Update_user_password, Update_user_profile, Get_all_users, CheckSession, Update_user_avatar
-from resources.project import Projects, Project_by_id, Project_by_user_id, Projects_by_category
-from resources.report import Reports, Report_by_id, Report_by_project_id
+from resources.project import Projects, Project_by_id, Project_by_user_id, Projects_by_category, Update_project_image, Update_project_scienteers
+from resources.report import Reports, Report_by_id, Report_by_project_id, Update_report_image
 
 app = Flask(__name__)
 CORS(app)
@@ -36,10 +36,13 @@ api.add_resource(Projects, '/api/projects')
 api.add_resource(Project_by_id, '/api/project/<string:id>')
 api.add_resource(Project_by_user_id, '/api/projects/researcher/<string:user_id>')
 api.add_resource(Projects_by_category, '/api/projects/category/<string:category>')
+api.add_resource(Update_project_image, '/api/project/project_img/<string:id>')
+api.add_resource(Update_project_scienteers, '/api/project/project_scienteers/<string:id>')
 
 api.add_resource(Reports, '/api/reports')
 api.add_resource(Report_by_id, '/api/report/<string:id>')
 api.add_resource(Report_by_project_id, '/api/reports/project/<string:project_id>')
+api.add_resource(Update_report_image, '/api/report/report_img/<string:id>')
 
 
 if __name__ == '__main__':

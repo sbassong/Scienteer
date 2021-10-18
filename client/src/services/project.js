@@ -31,6 +31,16 @@ export const UpdateProject = async (project_id, data) => {
     return res.data
 }
 
+export const UpdateProjectImg = async (project_id, data) => {
+    const res = await Client.put(`project/project_img/${project_id}`, data)
+    return res.data
+}
+
+export const UpdateProjectScienteers = async (project_id, data) => {
+    const res = await Client.put(`project/project_scienteers/${project_id}`, data)
+    return res.data
+}
+
 export const DeleteProject = async (project_id) => {
     const res = await Client.delete(`project/${project_id}`)
     return res.data

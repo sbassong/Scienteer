@@ -18,23 +18,14 @@ class Projects(Resource):
 
     def post(self):
         data = request.get_json()
-
-        file = request.files['image']
-        upload(file)
-        if file and allowed_file(file.filename):
-            file.filename = secure_filename(file.filename)
-            uploaded = upload(file)
-            print(uploaded)
-            data['image'] = uploaded
         params = {
             "title": data['title'],
             "category": data['category'],
-            "image": data['image'] or uploaded,
+            "image": '',
             "requirements": data['requirements'],
             "instructions": data['instructions'],
             "scienteers": [],
-            "user_id": data[''],
-            "name": data[''],
+            "user_id": data['user_id']
         }
         project = Project(**params)
         project.create()
@@ -56,12 +47,6 @@ class Project_by_id(Resource):
         if payload:
             project = Project.find_project_by_id(id)
             if payload["id"] == str(project.user_id):
-                file = request.files['image']
-                upload(file)
-                if file and allowed_file(file.filename):
-                    file.filename = secure_filename(file.filename)
-                    uploaded = upload(file)
-                    data['image'] = uploaded
                 for key in data:
                     setattr(project, key, data[key])
                 db.session.commit()
@@ -98,4 +83,25 @@ class Project_by_user_id(Resource):
         return projects, 200
 
 
+class Update_project_image(Resource):
+    def put(self, id):
+        if "image" not in request.files:
+            return {"msg": "Error"}, 400
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            file.filename = secure_filename(file.filename)
+            uploaded = upload(file)
+            project = Project.update(id, {"image": uploaded})
+            return project, 200
+        return {"msg": "Error, Upload didn't work"}, 400
 
+class Update_project_scienteers(Resource):
+    def put(self, id):
+        data = request.get_json()
+        project = Project.find_project_by_id(id)
+        if project:
+            project.scienteers.append(data)
+            db.session.commit()
+            return project.json(), 200
+        return {"msg": "Project not found"}, 404
+    

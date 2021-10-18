@@ -47,7 +47,7 @@
     </v-overlay>
 
 
-    <v-container v-if='user.researcher'>
+    <v-container v-if='user.researcher === true'>
       <v-row>
         <v-col v-for="project in researcherProjects" :key="project.id" cols="4">
           <ProjectCard  :project='project' />

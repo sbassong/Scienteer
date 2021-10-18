@@ -17,17 +17,13 @@ class Reports(Resource):
 
     def post(self):
         data = request.get_json()
-        #upload to s3
-        file = request.files['image']
-        upload(file)
-        if file and allowed_file(file.filename):
-            file.filename = secure_filename(file.filename)
-            uploaded = upload(file)
-            data['image'] = uploaded
-
-        params = {}
-        for k in data.keys():
-            params[k] = data[k]
+        params = {
+            "content": data['content'],
+            "image": '',
+            "location": data['location'],
+            "user_id": data['user_id'],
+            "project_id": data['project_id'],
+        }
         report = Report(**params)
         report.create()
         return report.json(), 201
@@ -48,12 +44,6 @@ class Report_by_id(Resource):
         if payload:
             report = Report.find_report_by_id(id)
             if payload["id"] == str(report.user_id):
-                file = request.files['image']
-                upload(file)
-                if file and allowed_file(file.filename):
-                    file.filename = secure_filename(file.filename)
-                    uploaded = upload(file)
-                    data['image'] = uploaded
                 for key in data:
                     setattr(report, key, data[key])
                 db.session.commit()
@@ -80,3 +70,16 @@ class Report_by_project_id(Resource):
         raw_reports = Report.find_reports_by_project_id(project_id)
         reports = [report.json() for report in raw_reports]
         return reports, 200
+
+
+class Update_report_image(Resource):
+    def put(self, id):
+        if "image" not in request.files:
+            return {"msg": "Error"}, 400
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            file.filename = secure_filename(file.filename)
+            uploaded = upload(file)
+            report = Report.update(id, {"image": uploaded})
+            return report, 200
+        return {"msg": "Error, Upload didn't work"}, 400

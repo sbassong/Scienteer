@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {CreateProject} from '../services/project'
+import {CreateProject, UpdateProjectImg} from '../services/project'
 import {validationMixin} from 'vuelidate'
 import {required} from 'vuelidate/lib/validators'
 import { mapState } from 'vuex'
@@ -41,21 +41,33 @@ export default {
   methods: {
     async handleSubmit(event) {
       event.preventDefault()
+      console.log("firing")
       const projectBody = {
         title: this.title,
         category: this.whichCategory(),
         requirements: this.requirements,
         instructions: this.instructions,
-        image: this.image,
         user_id: this.user.id
       }
-      const res = await CreateProject(projectBody)
+
+      const imageBody = {
+        image: this.image,
+      }
+
+      let formData = new FormData()
+      formData.append("image" , imageBody["image"])
+      console.log("firing 2" )
+      
+      const createdProj = await CreateProject(projectBody)
+      console.log("creproj", createdProj)
+      const updatedProj = await UpdateProjectImg(createdProj.id, formData)
+      console.log("upproj", updatedProj)
+
       this.title = ''
-      this.category = null
       this.requirements = '' 
       this.instructions = '' 
       this.image = ''
-      this.$router.push(`/project/${res.data.id}`)
+      this.$router.push(`/project/${updatedProj.id}`)
     },
 
     whichCategory() {

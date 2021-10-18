@@ -7,23 +7,19 @@ export default new Vuex.Store({
   state: {
     user: null,
     authenticated: false,
+    userCoordinates: {
+      lat: 0,
+      lng: 0
+    },
+    mapCoordinates: {
+      lat: 0,
+      lng: 0
+    },
+
 
     users: [],
     projects: [],
     reports: [],
-
-    ecoProjects: [],
-    microProjects: [],
-    marProjects: [],
-    orPorjects: [],
-
-    researcherDetails: {}, //RD
-    researcherProjects: [], //RPs
-
-    projectDetails: {}, //PD
-    projectReports: {}, //PRs
-    
-    reportDetails: {}, // RDs
     
   },
   
@@ -31,33 +27,24 @@ export default new Vuex.Store({
   mutations: {
     setUser: (state, data) => state.user = data,
     toggleAuthenticated: (state, data) => state.authenticated = data,
+    setUserCoords: (state, data) => state.userCoordinates = data,
+    setMapCoords: (state, data) => state.mapCoordinates = data,
     
     setUsers: (state, data) => state.users = data,
     setProjects: (state, data) => state.projects = data,
     setReports: (state, data) => state.reports = data,
-
-    RD: (state, data) => state.researcherDetails = data,
-    RPs: (state, data) => state.researcherProjects = data,
-    PD: (state, data) => state.projectDetails = data,
-    PRs: (state, data) => state.projectReports = data,
-    RDs: (state, data) => state.reportDetails = data,
   },
   
   //actions. methods used in the app to commit mutations
   actions: {
     setUser: (context, data) => context.commit('setUser', data),
     toggleAuthenticated: (context, data) => context.commit('toggleAuthenticated', data),
+    setUserCoords: (context, data) => context.commit('setUserCoords', data),
+    setMapCoords: (context, data) => context.commit('setMapCoords', data),
     
     setUsers: (context, data) => context.commit('setUsers', data),
     setProjects: (context, data) => context.commit('setProjects', data),
     setReports: (context, data) => context.commit('setReports', data),
-
-
-    RD: (context, data) => context.commit('RD', data),
-    RPs: (context, data) => context.commit('RPs', data),
-    PD: (context, data) => context.commit('PD', data),
-    PRs: (context, data) => context.commit('PRs', data),
-    RDs: (context, data) => context.commit('RDs', data),
   },
 
   //getters. methods used in the app to get store state data

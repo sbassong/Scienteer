@@ -58,3 +58,11 @@ class Report(db.Model):
     def find_report_by_id(cls, id):
         report = Report.query.filter_by(id=id).first_or_404()
         return report
+
+    @classmethod
+    def update(cls, id, fields):
+        report = Report.find_report_by_id(id)
+        for key in fields:
+            setattr(report, key, fields[key])
+        db.session.commit()
+        return report.json()

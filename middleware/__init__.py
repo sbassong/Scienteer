@@ -40,7 +40,6 @@ def compare_password(password, hashed_password):
     return bcrypt.checkpw(password.encode(), hashed_password.encode())
 
 
-
 #handles files validation
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}

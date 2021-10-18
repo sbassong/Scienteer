@@ -53,7 +53,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user,
-      authenticated: state => state.authenticated
+      authenticated: state => state.authenticated,
     }),
   }
 

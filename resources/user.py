@@ -88,7 +88,6 @@ class Update_user_avatar(Resource):
       file.filename = secure_filename(file.filename)
       uploaded = upload(file)
       user = User.update(id, {"avatar": uploaded})
-      print(user)
       return user, 200
     return {"msg": "Error, Upload didn't work"}, 400
 

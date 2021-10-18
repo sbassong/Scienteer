@@ -27,6 +27,11 @@ export const UpdateReport = async (report_id, data) => {
     return res.data
 }
 
+export const UpdateReportImg = async (report_id, data) => {
+    const res = await Client.put(`report/report_img/${report_id}`, data)
+    return res.data
+}
+
 export const DeleteReport = async (report_id) => {
     const res = await Client.delete(`report/${report_id}`)
     return res.data
