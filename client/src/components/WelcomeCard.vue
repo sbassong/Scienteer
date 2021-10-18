@@ -10,7 +10,7 @@
         <v-card-text>
         <v-row v-if="hover" align="center" justify="space-around" class="d-flex transition-fast-in-fast-out darken-2 v-card--reveal text-h2 " style="height: 100%;">
           <v-btn @click="overlayRegister = !overlay" color='primary' class='mb-5' rounded>Create account!</v-btn>
-          <v-btn @click="overlayLogin = !overlay" color='purple' class='mb-5' dark rounded>Have an account?</v-btn>
+          <v-btn @click="overlayLogin = !overlay" color='accent' class='mb-5' dark rounded>Have an account?</v-btn>
         </v-row>
 
         <v-overlay :absolute="absoluteRegister" :opacity='opacity' :value="overlayRegister">

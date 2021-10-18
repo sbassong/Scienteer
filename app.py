@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 from flask_migrate import Migrate
+import os
 
 from models.db import db
 from models import user, report, project
@@ -10,15 +11,27 @@ from resources.user import Login, Register, Update_user_password, Update_user_pr
 from resources.project import Projects, Project_by_id, Project_by_user_id, Projects_by_category, Update_project_image, Update_project_scienteers
 from resources.report import Reports, Report_by_id, Report_by_project_id, Update_report_image
 
+
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
 
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/scienteer_db"
-app.config['SQLALCHEMY_ECHO'] = True
+DATABASE_URL = os.getenv('DATABASE_URL')
+os.getenv('APP_SECRET')
+
+if DATABASE_URL:
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL.replace(
+        "://", "ql://", 1)
+    app.config['SQLALCHEMY_ECHO'] = False
+    app.env = 'production'
+else:
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/scienteer_db"
+    app.config['SQLALCHEMY_ECHO'] = True
+
 
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -46,4 +59,4 @@ api.add_resource(Update_report_image, '/api/report/report_img/<string:id>')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

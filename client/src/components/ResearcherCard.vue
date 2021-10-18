@@ -4,16 +4,13 @@
 
       <v-img :src="researcher.image ? researcher.image : 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'" height="200px">
         <v-expand-transition>
-          
           <div v-if="hover" class="d-flex px-4 transition-fast-in-fast-out purple darken-2 v-card--reveal text-p white--text" style="height: 100%;">
-            <h3>Bio</h3> <br/>
-            {{researcher.bio}}
+            <h4 v-if='researcher.bio'>Bio:</h4> <br/>
+            {{researcher.bio ? researcher.bio : "This researcher is shy!"}}
             </div>
         </v-expand-transition>
       </v-img>
       <v-card-title>{{researcher.name}}</v-card-title>
-
-
     </v-card>
   </v-hover>
 </template>
