@@ -3,7 +3,7 @@
 
     <v-row align='center' justify='space-around'>
       <v-container>
-        <v-img max-width="300" :src="project.image && project.image.length > 100 ? project.image : 'https://i.imgur.com/H72Sdq7.jpg?1'"></v-img>
+        <v-img max-width="300" :src="project.image ? project.image : 'https://i.imgur.com/H72Sdq7.jpg?1'"></v-img>
         <v-container>
           <h3>Title: {{project.title}}</h3>
         </v-container>
@@ -21,11 +21,11 @@
     </v-row>
 
     <v-container class='project-reports'>
-      <v-row v-if='user.researcher === true && user.id === project.user_id' align='center' justify='space-around'>
+      <v-row v-if='user && user.researcher === true && user.id === project.user_id' align='center' justify='space-around'>
         <v-btn @click="overlayProject = !overlay">Edit Project</v-btn>
         <v-btn @click="deleteProject">Delete Project</v-btn>
       </v-row>
-      <v-row v-if='user.researcher === false && authenticated' align='center' justify='space-around'>
+      <v-row v-if='user && user.researcher === false && authenticated' align='center' justify='space-around'>
         <v-btn @click="overlayReport = !overlay">Submit Report</v-btn>
       </v-row>
       <v-row>
@@ -76,7 +76,7 @@ export default {
     UpdateProjectForm
   },
 
-  mounted() {
+  beforeMount() {
     this.getProjectById()
   },
 

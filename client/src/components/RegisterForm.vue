@@ -60,7 +60,7 @@ export default {
     },
 
     scienteerOrNo() {
-      if (this.selected === 'Scienteer') return false
+      if (this.select === 'Scienteer') return false
       return true
       
   },

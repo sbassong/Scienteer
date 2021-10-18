@@ -43,7 +43,7 @@ export default {
       const payload = await LoginUser(loginBody)
       this.setUser(payload)
       this.toggleAuthenticated(true)
-      // this.$router.push('/profile')
+      this.$router.push('/profile')
     }
   },
 

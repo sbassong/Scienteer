@@ -40,7 +40,6 @@ api.add_resource(Projects_by_category, '/api/projects/category/<string:category>
 api.add_resource(Reports, '/api/reports')
 api.add_resource(Report_by_id, '/api/report/<string:id>')
 api.add_resource(Report_by_project_id, '/api/reports/project/<string:project_id>')
-# api.add_resource(Report_image, '/api/report/image/<string:id>')
 
 
 if __name__ == '__main__':

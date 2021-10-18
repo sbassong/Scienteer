@@ -6,7 +6,7 @@ from models.report import Report
 
 from werkzeug.utils import secure_filename
 from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
-from aws import upload_file
+from aws import upload
 
 #grabs all reports and creates report
 class Reports(Resource):
@@ -19,10 +19,10 @@ class Reports(Resource):
         data = request.get_json()
         #upload to s3
         file = request.files['image']
-        upload_file(file)
+        upload(file)
         if file and allowed_file(file.filename):
             file.filename = secure_filename(file.filename)
-            uploaded = upload_file(file)
+            uploaded = upload(file)
             data['image'] = uploaded
 
         params = {}
@@ -49,10 +49,10 @@ class Report_by_id(Resource):
             report = Report.find_report_by_id(id)
             if payload["id"] == str(report.user_id):
                 file = request.files['image']
-                upload_file(file)
+                upload(file)
                 if file and allowed_file(file.filename):
                     file.filename = secure_filename(file.filename)
-                    uploaded = upload_file(file)
+                    uploaded = upload(file)
                     data['image'] = uploaded
                 for key in data:
                     setattr(report, key, data[key])

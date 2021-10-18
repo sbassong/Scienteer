@@ -6,7 +6,7 @@ from models.user import User
 
 from werkzeug.utils import secure_filename
 from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
-from aws import upload_file
+from aws import upload
 
 #handles login
 class Login(Resource):
@@ -86,14 +86,11 @@ class Update_user_avatar(Resource):
     file = request.files['avatar']
     if file and allowed_file(file.filename):
       file.filename = secure_filename(file.filename)
-      uploaded = upload_file(file)
-      user = User.find_user_by_id(id)
-      if user:
-        for key in {"avatar": uploaded}:
-          setattr(user, key, file[key])
-      db.session.commit()
-      return user.client_json(), 200
-    return {"msg": "Error"}, 400
+      uploaded = upload(file)
+      user = User.update(id, {"avatar": uploaded})
+      print(user)
+      return user, 200
+    return {"msg": "Error, Upload didn't work"}, 400
 
 #handles getting all users
 class Get_all_users(Resource):

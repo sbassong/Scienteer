@@ -68,3 +68,11 @@ class User(db.Model):
     def find_all_researchers(cls):
         researchers = User.query.filter_by(researcher=False).all()
         return researchers
+
+    @classmethod
+    def update(cls, id, fields):
+        user = User.find_user_by_id(id)
+        for key in fields:
+            setattr(user, key, fields[key])
+        db.session.commit()
+        return user.client_json()

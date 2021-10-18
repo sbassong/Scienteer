@@ -34,7 +34,6 @@ export default {
       const token = localStorage.getItem('token')
       if (token) {
         const sessionUser = await CheckSession()
-        console.log(sessionUser)
         this.setUser(sessionUser)
         this.toggleAuthenticated(true)
         localStorage.setItem('authenticated', '1')

@@ -6,7 +6,7 @@ from models.project import Project
 
 from werkzeug.utils import secure_filename
 from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
-from aws import upload_file
+from aws import upload
 
 
 #grabs all projects and creates project
@@ -20,15 +20,22 @@ class Projects(Resource):
         data = request.get_json()
 
         file = request.files['image']
-        upload_file(file)
+        upload(file)
         if file and allowed_file(file.filename):
             file.filename = secure_filename(file.filename)
-            uploaded = upload_file(file)
+            uploaded = upload(file)
+            print(uploaded)
             data['image'] = uploaded
-
-        params = {}
-        for k in data.keys():
-            params[k] = data[k]
+        params = {
+            "title": data['title'],
+            "category": data['category'],
+            "image": data['image'] or uploaded,
+            "requirements": data['requirements'],
+            "instructions": data['instructions'],
+            "scienteers": [],
+            "user_id": data[''],
+            "name": data[''],
+        }
         project = Project(**params)
         project.create()
         return project.json(), 201
@@ -50,10 +57,10 @@ class Project_by_id(Resource):
             project = Project.find_project_by_id(id)
             if payload["id"] == str(project.user_id):
                 file = request.files['image']
-                upload_file(file)
+                upload(file)
                 if file and allowed_file(file.filename):
                     file.filename = secure_filename(file.filename)
-                    uploaded = upload_file(file)
+                    uploaded = upload(file)
                     data['image'] = uploaded
                 for key in data:
                     setattr(project, key, data[key])

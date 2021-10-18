@@ -2,25 +2,27 @@
   <v-container fluid fill-height>
     <v-navigation-drawer v-model="drawer" app>
       <v-sheet color="grey lighten-4" class="pa-4">
-        <v-avatar class="mb-4" color="grey darken-1" size="64">
-          <v-img :src="user.avatar ? user.avatar : 'https://i.imgur.com/tRxbS89.jpg'"></v-img>
+        <v-avatar class="mb-4" color="grey darken-1" size="124">
+          <v-img :src="user.avatar && user.avatar.length > 5? user.avatar : 'https://i.imgur.com/tRxbS89.jpg'"></v-img>
         </v-avatar>
         <div>Name: {{user.name}}</div>
         <div>Email: {{user.email}}</div>
-        <div>Role: {{user.researcher ? 'Researcher' : 'Scienteer'}}</div>
+        <div>Role: {{user.researcher === true ? 'Researcher' : 'Scienteer'}}</div>
       </v-sheet>
+
+      <v-divider></v-divider>
 
       <v-sheet color="grey lighten-4" class="pa-4">
-        <div>{{user.bio}}</div>
+        <div><h4>Bio:</h4>{{user.bio}}</div>
       </v-sheet>
 
-
+      <v-divider></v-divider>
 
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-btn @click="overlayProfile = !overlay" color='primary' class='mb-5' rounded>Update Profile</v-btn>
         <v-btn @click="overlayPass = !overlay" color='purple' class='mb-5' dark rounded>Update Password</v-btn>
         <v-btn @click="overlayAv = !overlay" color='purple' class='mb-5' dark rounded>Update Avatar</v-btn>
-        <v-btn @click="overlayP = !overlay" color='purple' class='mb-5' dark rounded>Build Project</v-btn>
+        <v-btn @click="overlayP = !overlay" color='purple' class='mb-5' dark rounded v-if="user.researcher === true">Build Project</v-btn>
       </v-sheet>
     </v-navigation-drawer>
 
@@ -45,7 +47,7 @@
     </v-overlay>
 
 
-    <v-container v-if='user.researcher === true'>
+    <v-container v-if='user.researcher'>
       <v-row>
         <v-col v-for="project in researcherProjects" :key="project.id" cols="4">
           <ProjectCard  :project='project' />
@@ -95,8 +97,8 @@ export default {
     absoluteP: true,
     overlayP: false,
 
-    researcherProjects: null,
-    scienteerReports: null
+    researcherProjects: [],
+    scienteerReports: []
   }),
 
   beforeMount() {
@@ -123,8 +125,7 @@ export default {
     },
 
     async getUserDetails() {
-      if (this.user.researcher === true) this.getProjects()
-      else this.getReports()
+      this.user.researcher === true ? this.getProjects() : this.getReports()
     }
   },
 
