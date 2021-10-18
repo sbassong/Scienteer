@@ -2,10 +2,8 @@
   <v-container class='researchers' fluid fill-height>
 
     <v-row>
-      <v-col v-for="researcher in getResearchers" :key="researcher.id" cols="4">
-
+      <v-col v-for="researcher in getResearchers" :key="researcher.id" cols="12">
         <ResearcherCard :researcher='researcher' />
-
       </v-col>
     </v-row>
 

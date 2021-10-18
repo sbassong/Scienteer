@@ -22,7 +22,7 @@
       <v-container v-if="project.scienteers.length > 0">
         <h3>Current Scienteers:</h3>
         <div v-for="scienteer in project.scienteers" :key="scienteer.id" >
-          <p>{{scienteer.name}}</p>
+          <p>{{scienteer}}</p>
         </div>
       </v-container>
     </v-row>
@@ -90,7 +90,7 @@ export default {
     UpdateProjectForm
   },
 
-  beforeMount() {
+  mounted() {
     this.getProjectById()
   },
 

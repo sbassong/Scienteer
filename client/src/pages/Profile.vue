@@ -105,6 +105,10 @@ export default {
     this.getUserDetails()
   },
 
+  mounted(){
+    this.getUserDetails()
+  },
+
   methods: {
     selectProject(project_id) {
       this.$router.push(`/project/${project_id}`)
