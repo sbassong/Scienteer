@@ -4,7 +4,7 @@
 
 ## By: Sam Bassong
 
-###  [Porfolio]() | [GitHub](https://github.com/sbassong) | [LinkedIn](https://www.linkedin.com/in/sambassong/)
+###  [Portfolio](https://www.sambassong.com/) | [LinkedIn](https://www.linkedin.com/in/sambassong/) | [GitHub](https://github.com/sbassong) 
 ***
 
 ### ***Description***
@@ -20,7 +20,7 @@
 * Vuetify
 * Vuex
 * Flask/Python
-* SQLAlchemy/PostgreSQL
+* PostgreSQL/SQLAlchemy
 * AWS S3 
 * Google Maps API
 * Vue2-google-maps
@@ -35,7 +35,7 @@
 
 #### 
 * Create an account and browse the app the checkout the functionality. You might find a project you enjoy. Onward Scienteer!
-* ###  [Application](https://scienteer-sbassong.vercel.app/) 
+* ###  [Live platform](https://scienteer-sbassong.vercel.app/) 
 * ###  [Trello](https://trello.com/b/hLZpY931/scienteer) 
 ***
 
