@@ -1,4 +1,5 @@
 **/__pychache__/
+__pycache__\nvenv
 venv
 .env
 env/

@@ -36,7 +36,7 @@ else:
 db.init_app(app)
 migrate = Migrate(app, db)
 
-
+# USERS
 api.add_resource(Login, '/api/auth/login')
 api.add_resource(CheckSession, '/api/auth/session')
 api.add_resource(Register, '/api/auth/register')
@@ -46,6 +46,7 @@ api.add_resource(Update_user_password, '/api/users/profile_pw/<string:id>')
 api.add_resource(Update_user_avatar, '/api/users/profile_avatar/<string:id>')
 api.add_resource(Delete_user, '/api/user/<string:id>')
 
+# PROJECTS
 api.add_resource(Projects, '/api/projects')
 api.add_resource(Project_by_id, '/api/project/<string:id>')
 api.add_resource(Project_by_user_id, '/api/projects/researcher/<string:user_id>')
@@ -53,6 +54,7 @@ api.add_resource(Projects_by_category, '/api/projects/category/<string:category>
 api.add_resource(Update_project_image, '/api/project/project_img/<string:id>')
 api.add_resource(Update_project_scienteers, '/api/project/project_scienteers/<string:id>')
 
+# REPORTS
 api.add_resource(Reports, '/api/reports')
 api.add_resource(Report_by_id, '/api/report/<string:id>')
 api.add_resource(Report_by_project_id, '/api/reports/project/<string:project_id>')

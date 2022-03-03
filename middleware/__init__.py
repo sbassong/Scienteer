@@ -30,7 +30,6 @@ def strip_token(req):
         return None
 
 
-
 # handles hashing password
 def gen_password(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()

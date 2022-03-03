@@ -8,7 +8,7 @@
     "email": "r@email.com",
     "password": "test",
     "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
-    "researcher": true
+    "researcher": True
   }
 
   #scienteer user 
@@ -17,7 +17,7 @@
     "email": "s@email.com",
     "password": "test",
     "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
-    "researcher": false
+    "researcher": False
   }
 
 #login - http://localhost:5000/auth/login OK
@@ -42,7 +42,7 @@
     "email": "r@email.com",
     "password": "test",
     "bio": "Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur quiquaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernaturvoluptatem sit aliquam. Dolores voluptatum est.Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.Et sint et. Ut ducimus quod nemo ab voluptatum.",
-    "researcher": true
+    "researcher": True
 }
 
 
