@@ -1,7 +1,7 @@
 import Client from './api'
 
 export const UpdateUserPW = async (user_id, data) => {
-    const res = await Client.update(`/users/profile_pw/${user_id}`, data)
+    const res = await Client.put(`/users/profile_pw/${user_id}`, data)
     return res.data
 }
 
