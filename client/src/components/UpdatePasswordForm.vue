@@ -30,8 +30,7 @@ export default {
         old_password: this.old_password,
         new_password: this.new_password
       }
-      const mess = await UpdateUserPW(this.user.id, passwordBody)
-      console.log(mess)
+      await UpdateUserPW(this.user.id, passwordBody)
       this.old_password = ''
       this.new_password = ''
       this.c_new_password = ''

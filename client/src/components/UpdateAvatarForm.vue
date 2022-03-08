@@ -24,8 +24,7 @@ export default {
       event.preventDefault()
       let avatarBody = new FormData()
       avatarBody.append('avatar', this.avatar)
-      const res = await UpdateAvatar(this.user.id, avatarBody)
-      console.log(res)
+      await UpdateAvatar(this.user.id, avatarBody)
       this.avatar = ''
       this.$router.push('/users/profile')
     }
