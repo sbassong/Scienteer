@@ -1,10 +1,10 @@
 from flask_restful import Resource
 from flask import request
+from werkzeug.utils import secure_filename
+
 
 from models.db import db
 from models.user import User
-
-from werkzeug.utils import secure_filename
 from middleware import create_token, strip_token, read_token, compare_password, gen_password, allowed_file
 from aws import upload
 

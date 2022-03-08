@@ -71,7 +71,8 @@ class User(db.Model):
 
     @classmethod
     def update(cls, id, fields):
-        user = User.find_user_by_id(id)
+        # user = User.find_user_by_id(id)
+        user = User.query.filter_by(id=id).first()
         for key in fields:
             setattr(user, key, fields[key])
         db.session.commit()
