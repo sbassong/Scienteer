@@ -1,5 +1,8 @@
-**/__pychache__/
-__pycache__\nvenv
-venv
-.env
-env/
+backend-flask/**/__pychache__/
+backend-flask/__pycache__\nvenv
+backend-flask/venv
+/backend-flask/.env
+backend-flask/.env
+backend-flask/env/
+/backend-flask/env/
+/frontend-vue-vuetify
