@@ -1,0 +1,59 @@
+<template>
+  <router-view />
+</template>
+
+<script>
+// import Nav from './components/Nav.vue';
+import { CheckSession } from './services/auth';
+import { GetAllUsers } from './services/user';
+import { GetAllProjects } from './services/project';
+import { GetAllReports } from './services/report';
+// import { mapActions, mapState } from 'vuex';
+
+export default {
+  name: 'App',
+  components: {
+    // NavBar: Nav,
+  },
+
+  created() {
+    this.checkToken();
+    this.getData();
+  },
+
+  mounted() {
+    this.getData();
+  },
+
+  methods: {
+    // ...mapActions(['setUser','toggleAuthenticated', 'setUsers', 'setProjects', 'setReports']),
+
+    async checkToken() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const sessionUser = await CheckSession();
+        this.setUser(sessionUser);
+        this.toggleAuthenticated(true);
+        localStorage.setItem('authenticated', '1');
+      }
+    },
+
+    async getData() {
+      const users = await GetAllUsers();
+      this.setUsers(users);
+      const projects = await GetAllProjects();
+      this.setProjects(projects);
+      const reports = await GetAllReports();
+      this.setReports(reports);
+    },
+  },
+
+  computed: {
+    // ...mapState({
+    //   user: state => state.user,
+    //   authenticated: state => state.authenticated,
+    // }),
+  },
+
+};
+</script>
